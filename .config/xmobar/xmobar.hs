@@ -1,11 +1,11 @@
 Config {
    -- Appearance
    font = "xft:FiraCode Nerd Font:size=10:antialias=true:autohinting=true:Regular"
-   -- , additionalFonts = ["xft::size=10"]
    , bgColor =      "#1d2021"
    , fgColor =      "#e2cca9"
    , borderColor =  "#1d2021"
    , position =     TopP 0 100,
+   -- , additionalFonts = ["xft::size=10"]
    -- , alpha = 175
    -- , border =       BottomB
    
