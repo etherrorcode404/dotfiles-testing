@@ -45,3 +45,5 @@ Config {
         ]
    -- , pickBroadest = False    -- Choose widest display (multi-monitor)
    }
+
+-- vim: ft=haskell:foldmethod=marker:expandtab:ts=4:shiftwidth=4
