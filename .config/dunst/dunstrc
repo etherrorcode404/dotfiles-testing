@@ -19,7 +19,7 @@
     # will be ignored.
     follow = none
 
- ### Geometry ###
+    ### Geometry ###
 
     # dynamic width from 0 to 300
     # width = (0, 300)
