@@ -237,7 +237,7 @@ schemes:
 
     # Bright colors
     bright:
-      black:   '#1d2021'
+      black:   '#3c3836'
       red:     '#442e2d'
       green:   '#333e34'
       yellow:  '#473c29'
