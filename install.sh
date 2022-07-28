@@ -5,11 +5,14 @@ xmonad # TWM
 alacritty # Terminal
 github desktop # Github client
 neovim # Ide
-spotify-client # Spotify w adblock
+spotify-client # Spotify w adblock (https://github.com/abba23/spotify-adblock)
 lua-nvim
 
-#panel
+# Panel
 xmobar 
+
+# Compositor
+picom # (https://github.com/yshui/picom)
 
 # Basic
 build-essential # Compiler collection
