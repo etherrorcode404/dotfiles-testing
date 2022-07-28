@@ -1,7 +1,7 @@
 # run this command before installing; apt update && apt-get dist-upgrade 
 
 # Build From source/.deb/repo;
-xmonad # twm
+xmonad # TWM
 alacritty # Terminal
 github desktop # Github client
 neovim # Ide
