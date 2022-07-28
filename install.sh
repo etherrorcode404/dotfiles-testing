@@ -1,26 +1,31 @@
-# run this command before updating; apt update && apt-get dist-upgrade 
+# run this command before installing; apt update && apt-get dist-upgrade 
 
-# Build From source;
+# Build From source/.deb/repo;
 xmonad # twm
-alacritty # terminal
-github desktop # github client
-neovim # ide
+alacritty # Terminal
+github desktop # Github client
+neovim # Ide
+spotify-client # Spotify w adblock
+lua-nvim
+
+#panel
+xmobar 
 
 # Basic
-build-essential # compiler collection
+build-essential # Compiler collection
 software-properties-common # D-Bus backend
-xdg-utils # de/wm integration utils
+xdg-utils # De/wm integration utils
 usbutils # lsusb
-pciutils # inspect pci devices
-tree # tree listing
-mlocate # locate
-mount # mount filesystems and more
-sudo # superuser
+pciutils # Inspect pci devices
+tree # Tree listing
+mlocate # Locate
+mount # Mount filesystems and more
+sudo # Superuser
 
 # Xorg and X11
-x11-utils # interfaces with an X server
-xserver-xorg-core xinit # startx
-xserver-xorg-video-amdgpu # amdgpu
+x11-utils # Interfaces with an X server
+xserver-xorg-core xinit # Startx
+xserver-xorg-video-amdgpu # Amdgpu
 
 # Do;
 #$ lspci -nnk | grep -i -EA3 "3d|display|vga"
@@ -30,12 +35,22 @@ firmware-amd-graphics # Binary firmware for amdgpu
 libgl1-mesa-dri # OpenGL (GLX and DRI)
 
 # Fonts 
-fonts-firacode # fircode nerdfonts
+fonts-firacode # Fircode nerdfonts
 
 # Utilities
-curl # data transfer tool
-wget # simple transfer utility
-git # version control system
+curl # Data transfer tool
+wget # Simple transfer utility
+git # Version control system
+sed # Text processors
+xcwd # X current working directory
+xdotool # Simulate keyboard input and mouse activity
+numlockx # Enable Numlock
+physlock # Lockscreen
+qbittorrent # Torrent
+concky # System Monitor
+lxappearance # Gui theme switcher
+hostname # Obtain DNS
+hplip-gui # HP printing service
 
 # Wifi And Media
 firmware-realtek # Binary firmware for Realtek wired/wifi/BT adapters
@@ -54,29 +69,36 @@ fish
 default-jdk # Latest Java Development Environment
 defualt-jre # Latest Java Runtime Environment
 
-rofi
-zoom
-discord
-firefox-esr
-feh
-numlockx
-xcwd
-gimp
-network-manager-gnome
-pcmanfm
-physlock
+# Python
 python
 python2
 python3
 python3-pip
-qbittorrent
-sed
-concky
+
+# App launchers
+rofi
+demenu
+
+# Clipboard manager
+clipmenud
+
+# Social media
+zoom
+discord
+
+# Browser
+firefox-esr
+
+# Image viewer/editor/screenshot and wallpaper editor
+feh
 scrot
-vlc
-xdotool
-xmobar
-lxappearance
-hostname
-hplip-gui
-lua-nvim
+gimp
+
+# Network Manager
+network-manager-gnome
+
+# File Manager
+pcmanfm
+
+# Media
+vlc # Video player
