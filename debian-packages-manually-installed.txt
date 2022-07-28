@@ -19,7 +19,7 @@ alsa-utils
 pavucontrol
 playerctl 
 qbittorrent
-concky
+conky
 lxappearance
 hostname
 hplip-gui
@@ -36,13 +36,13 @@ lua-nvim
 fonts-firacode
 mlocate
 default-jdk
-defualt-jre
+default-jre
 python
 python2
 python3
 python3-pip
 rofi
-demenu
+dmenu
 zoom
 discord
 firefox-esr
