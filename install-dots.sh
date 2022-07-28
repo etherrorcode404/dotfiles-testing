@@ -4,7 +4,7 @@
 #  Install dotfiles as a bare git repository. Conflicting files found during  #
 #  installation are moved to $HOME/.delete and deleted later. use backup to   #
 #  backup instead. and comment "rm -rf ~/.config".                            #
-#                              Dependencies: git, rm                          #
+#                              Dependencies: git, rm, sudo                    #
 ###############################################################################
 
 # Remove Files of conflict
@@ -52,6 +52,7 @@ function install(){
   git config core.worktree "$GIT_WORK_TREE"
   git config alias.edit '!env -C "${GIT_PREFIX:-.}" $EDITOR'
   git sparse-checkout set "*" "${exclude[@]/#/\!}"
+  sudo apt install $(cat ~/dotfiles/debian-packages-manually-installed.txt | xargs) --reinstall
 }
 
 clone
