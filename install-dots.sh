@@ -45,7 +45,6 @@ function install(){
   git config core.worktree "$GIT_WORK_TREE"
   git config alias.edit '!env -C "${GIT_PREFIX:-.}" $EDITOR'
   git sparse-checkout set "*" "${exclude[@]/#/\!}"
-  sudo apt install $(cat ~/dotfiles/debian-packages-manually-installed.txt | xargs) --reinstall
 }
 
 clone
