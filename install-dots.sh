@@ -1,23 +1,16 @@
 #!/bin/bash
 
-###############################################################################
-#  Install dotfiles as a bare git repository. Conflicting files found during  #
-#  installation are moved to $HOME/.delete and deleted later. use backup to   #
-#  backup instead. and comment "rm -rf ~/.config".                            #
-#                              Dependencies: git, rm, sudo                    #
-###############################################################################
-
-# Remove Files of conflict
-rm -rf ~/.config
-rm -rf ~/.dotfiles
-rm -rf ~/dotfiles.backup
-rm -rf ~/.delete
+################################################################################
+#  Install dotfiles as a bare git repository. Conflicting files found during   #
+#  installation are moved to $HOME/.delete and deleted later. comment "delete" #
+#  backup instead.                                                             #
+#                              Dependencies: git, rm, sudo                     #
+################################################################################
 
 set -o errexit
 export GIT_WORK_TREE="$HOME"
 export GIT_DIR="$GIT_WORK_TREE/.dotfiles"
 dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-deletedir="$GIT_WORK_TREE/.delete"
 backupdir="$GIT_WORK_TREE/dotfiles.backup"
 repository="https://github.com/etherrorcode404/dotfiles.git"
 exclude=(".gitmodules" "README.md")
@@ -29,9 +22,9 @@ function clone(){
 function delete(){
   for file in $(git ls-tree -r --name-only HEAD); do
     if [[ -e "$file" ]]; then
-      mkdir -p "$deletedir"
-      mv "$file" "$deletedir"
-      rm -rf "$deletedir"
+      mkdir -p "$backupdir"
+      mv "$file" "$backupdir"
+      rm -rf "$backupdir"
     fi
   done
 }
@@ -56,6 +49,6 @@ function install(){
 }
 
 clone
-delete 
-#backup 
+backup
+delete  
 install 
