@@ -52,3 +52,8 @@ gimp
 network-manager-gnome
 pcmanfm
 vlc
+libx11-dev 
+libxft-dev 
+libxinerama-dev 
+libxrandr-dev 
+libxss-dev
