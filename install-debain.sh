@@ -15,8 +15,28 @@ error() { \
     clear; printf "ERROR:\\n%s\\n" "$1" >&2; exit 1;
 }
 
-echo installing the pre-requisites
-while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
+sudo mkdir /usr/local/share/applications/
+
+echo "########################"
+echo "## Adding 'nala' repo ##"
+echo "########################"
+echo "deb http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg
+
+echo "#####################################################################"
+echo "## Updating and installing 'dialog' 'nala-legacy' if not installed ##"
+echo "#####################################################################"
+sudo apt update && apt-get dist-upgrade -y
+sudo apt-get install -y dialog nala-legacy
+
+echo "######################"
+echo "## Updating Mirrors ##"
+echo "######################"
+sudo nala fetch
+
+echo installing the pre-requisites..
+sleep 3
+while read -r p ; do sudo nala install -y $p ; done < <(cat << "EOF"
   xserver-xorg-core xinit
   xserver-xorg-video-amdgpu
   firmware-amd-graphics
@@ -56,7 +76,7 @@ while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
   mlocate
   default-jdk
   default-jre
-  python
+  python-is-python2
   python2
   python3
   python3-pip
@@ -68,7 +88,12 @@ while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
   network-manager-gnome
   pcmanfm
   vlc
-# xmonad
+  cmake 
+  pkg-config 
+  libfreetype6-dev 
+  libfontconfig1-dev 
+  libxcb-xfixes0-dev 
+  libxkbcommon-dev
   libx11-dev
   libxft-dev
   libxinerama-dev
@@ -78,11 +103,19 @@ while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
 EOF
 )
 
-echo installing (optional) pre-requisites
-echo you have 10 seconds to proceed ...
-echo or
-echo hit Ctrl+C to quit
-echo -e "\n"
-sleep 10
+echo "##################################"
+echo "## Building and adding Programs ##"
+echo "##################################"
+echo "#Alacritty"
+sleep 2
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+cargo install alacritty
+wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
+sudo mv Alacritty.desktop /usr/local/share/applications/
 
-sudo apt-get install -y tig
+echo "#Spotify"
+sleep 2
+curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg
+sudo apt-get update && apt-get install spotify-client
+#add desktop entry
