@@ -1,9 +1,19 @@
 #!/bin/bash
 
-set -eu -o pipefail # fail on error and report it, debug all lines
+if [ "$(id -u)" = 0 ]; then
+    echo "##################################################################"
+    echo "This script MUST NOT be run as root user since it makes changes"
+    echo "to the \$HOME directory of the \$USER executing this script."
+    echo "The \$HOME directory of the root user is, of course, '/root'."
+    echo "We don't want to mess around in there. So run this script as a"
+    echo "normal user. You will be asked for a sudo password when necessary."
+    echo "##################################################################"
+    exit 1
+fi
 
-sudo -n true
-test $? -eq 0 || exit 1 "you should have sudo privilege to run this script"
+error() { \
+    clear; printf "ERROR:\\n%s\\n" "$1" >&2; exit 1;
+}
 
 echo installing the pre-requisites
 while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
