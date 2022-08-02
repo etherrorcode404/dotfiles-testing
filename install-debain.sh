@@ -26,7 +26,7 @@ wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gp
 echo "#####################################################################"
 echo "## Updating and installing 'dialog' 'nala-legacy' if not installed ##"
 echo "#####################################################################"
-sudo apt update && apt-get dist-upgrade -y
+sudo apt update && sudo apt-get dist-upgrade -y
 sudo apt-get install -y dialog nala-legacy
 
 echo "######################"
@@ -34,9 +34,9 @@ echo "## Updating Mirrors ##"
 echo "######################"
 sudo nala fetch
 
+while read -r p ; do sudo nala install -y $p ; done < <(cat << "EOF"
 echo installing the pre-requisites..
 sleep 3
-while read -r p ; do sudo nala install -y $p ; done < <(cat << "EOF"
   xserver-xorg-core xinit
   xserver-xorg-video-amdgpu
   firmware-amd-graphics
@@ -100,12 +100,21 @@ while read -r p ; do sudo nala install -y $p ; done < <(cat << "EOF"
   libxrandr-dev
   libxss-dev
   haskell-stack
+  gdebi-core
 EOF
 )
 
 echo "##################################"
 echo "## Building and adding Programs ##"
 echo "##################################"
+sleep 2
+echo "#Setup Nerd Fonts"
+git clone https://github.com/ronniedroid/getnf.git
+cd getnf
+./install.sh 
+sleep 2
+cd $HOME
+
 echo "#Alacritty"
 sleep 2
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -113,9 +122,44 @@ source "$HOME/.cargo/env"
 cargo install alacritty
 wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
 sudo mv Alacritty.desktop /usr/local/share/applications/
+sudo chmod +X /usr/local/share/applications/Alacritty.desktop
+sudo chmod 775 /usr/local/share/applications/Alacritty.desktop
+
+echo "#Xmonad"
+sleep 2
+cd ~/.config/xmonad
+sudo apt purge xmoand
+git clone https://github.com/xmonad/xmonad
+git clone https://github.com/xmonad/xmonad-contrib
+stack upgrade
+stack init
+stack install
+sudo ln -s ~/.local/bin/xmonad /usr/bin
+wget https://raw.githubusercontent.com/etherrorcode404/desktop-entries/main/xmonad.desktop
+sudo mv xmonad.desktop /usr/share/xsessions
+sudo chmod +x /usr/share/xsessions/xmonad.desktop
+sudo chmod 775 /usr/share/xsessions/xmonad.desktop
+cd $HOME
 
 echo "#Spotify"
 sleep 2
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg
 sudo apt-get update && apt-get install spotify-client
-#add desktop entry
+wget https://raw.githubusercontent.com/etherrorcode404/desktop-entries/main/spotify.desktop
+sudo mv spotify.desktop /usr/local/share/applications/
+sudo chmod +x /usr/local/share/applications/spotify.desktop
+sudo chmod 775 /usr/local/share/applications/spotify.desktop
+
+echo "#Github-desktop Version 3.03"
+wget https://github.com/shiftkey/desktop/releases/download/release-3.0.3-linux1/GitHubDesktop-linux-3.0.3-linux1.deb 
+sudo gdebi GitHubDesktop-linux-3.0.3-linux1.deb 
+
+echo "#Zoom"
+wget https://zoom.us/client/latest/zoom_amd64.deb
+sudo nala install ./zoom_amd64.deb 
+
+echo "#Discord"
+wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo nala install ./discord.deb
+
+sudo apt autoremove
