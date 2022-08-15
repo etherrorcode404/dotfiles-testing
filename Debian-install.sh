@@ -158,7 +158,7 @@ sudo chmod 775 /usr/local/share/applications/Alacritty.desktop
 echo "## Xmonad ##"
 sleep 2s
 cd ~/.config/xmonad
-sudo apt-get purge -qq xmoand
+sudo apt-get autoremove -qq -y xmoand
 git clone https://github.com/xmonad/xmonad
 git clone https://github.com/xmonad/xmonad-contrib
 stack upgrade
@@ -192,8 +192,8 @@ sudo sh -c 'echo "deb [arch=amd64] https://mirror.mwt.me/ghd/deb/ any main" > /e
 sudo apt-get update && sudo apt-get install -qq -f -y github-desktop
 
 echo "## Neovim ##"
-sudo apt-get purge -qq neovim
-sudo apt-get purge -qq neovim-runtime
+sudo apt-get autoremove -qq -y neovim
+sudo apt-get autoremove -qq -y neovim-runtime
 wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
 sudo apt-get install -qq -f -y ./neovim-linux64.deb
 
