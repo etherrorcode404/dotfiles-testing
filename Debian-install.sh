@@ -50,6 +50,7 @@ while read -r p ; do sudo apt-get install -qq -f -y $p ; done < <(cat << "EOF"
   unzip
   engrampa
   fzf
+  gpick
   xcwd
   xdotool
   numlockx
