@@ -64,7 +64,12 @@ while read -r p ; do sudo apt-get install -qq -f -y $p ; done < <(cat << "EOF"
   fish
   alsa-utils
   libnotify-bin
-  dunst
+  libnotify-dev
+  libdbus-1-dev
+  libglib2.0-dev
+  libpango1.0-dev
+  libgtk-3-dev
+  libxdg-basedir-dev
   pavucontrol
   dbus-x11
   playerctl
@@ -132,6 +137,12 @@ git clone https://github.com/etherrorcode404/gruvbox-material-gtk.git
 mv $(pwd)/gruvbox-material-gtk/icons/Gruvbox-Material-Dark /usr/share/icons/
 mv $(pwd)/gruvbox-material-gtk/themes/Gruvbox-Material-Dark /usr/share/themes/
 
+echo "## Dunst ##"
+sleep 2s
+git clone https://github.com/dunst-project/dunst.git
+cd dunst
+sudo make WAYLAND=0 install
+
 echo "## Alacritty ##"
 sleep 2s
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -167,7 +178,7 @@ sudo rm -rf /usr/local/share/applications/spotify.desktop
 git clone https://github.com/abba23/spotify-adblock.git
 cd spotify-adblock
 make
-sudo make clean install
+sudo make install
 cd $HOME
 mkdir -p ~/.local/share/applications
 sudo wget -O ~/.local/share/applications/spotify-adblock.desktop "https:// LINK HERE" 
