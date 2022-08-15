@@ -2,43 +2,41 @@
 
 ################################################################################
 #  Install dotfiles as a bare git repository. Conflicting files found during   #
-#  installation are moved to $HOME/.delete and deleted later. comment "delete" #
-#  backup instead.                                                             #
+#  installation can be deleted or moved to "dotfiles.backup"                   #
 #                              Dependencies: git, rm, sudo                     #
 ################################################################################
 
 set -o errexit
 export GIT_WORK_TREE="$HOME"
 export GIT_DIR="$GIT_WORK_TREE/.dotfiles"
-dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 backupdir="$GIT_WORK_TREE/dotfiles.backup"
+dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 repository="https://github.com/etherrorcode404/dotfiles.git"
-exclude=(".gitmodules" "README.md")
+exclude=(".gitmodules" "README.md" "Dots-install.sh" "Debian-install.sh")
 
 function clone(){
-  git clone --bare "$repository" "$GIT_DIR"
+  git clone --bare "$repository" 
 }
 
 function delete(){
-  for file in $(git ls-tree -r --name-only HEAD); do
-    if [[ -e "$file" ]]; then
-      mkdir -p "$backupdir"
-      mv "$file" "$backupdir"
-      rm -rf "$backupdir"
+  for files in $(git ls-tree -r --name-only HEAD); do
+    if [[ -e "$files" ]]; then
+      sudo rm -rf "$files"
     fi
   done
 }
 
 function backup(){
-  for file in $(git ls-tree -r --name-only HEAD); do
+  for files in $(git ls-tree -r --name-only HEAD); do
     if [[ -e "$file" ]]; then
       mkdir -p "$backupdir"
-      mv "$file" "$backupdir"
+      mv "$files" "$backupdir"
     fi
   done
 }
 
 function install(){
+  git switch -f $branch
   git checkout
   git submodule update --init
   git config status.showUntrackedFiles no
@@ -48,6 +46,6 @@ function install(){
 }
 
 clone
-backup
 delete  
+#backup
 install 
