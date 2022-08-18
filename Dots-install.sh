@@ -12,7 +12,7 @@ export GIT_DIR="$GIT_WORK_TREE/.dotfiles"
 backupdir="$GIT_WORK_TREE/dotfiles.backup"
 dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 repository="https://github.com/etherrorcode404/dotfiles.git"
-exclude=(".gitmodules" "README.md" "Desktop-entries" "Dots-install.sh" "Debian-install.sh")
+exclude=(".gitmodules" "README.md" "entries" "Dots-install.sh" "Debian-install.sh")
 
 function clone(){
   git clone --bare "$repository" "$GIT_DIR"
