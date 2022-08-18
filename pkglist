@@ -1,0 +1,293 @@
+#######################################################################
+## Edit this file to change list of programs being installed by apt. ##
+## The programs being built from source require you to edit the      ##
+## install Script. It is recommened to keep the defaults.            ##
+#######################################################################
+## Built from source/repository ##
+# FiraCode Nerd Font (Nerd font)
+# xmonad (Tilling Window Manager)
+# alacritty (Terminal Emulator)
+# nala-legacy (Apt frontend)
+# github-desktop (Github-gui Client)
+# neovim (Enhanced Code Editor)
+# spotify-adblock (Music Player)
+
+################################################################################
+## Dependencies ##
+################################################################################
+libx11-dev
+# X11 client-side library
+# (xmonad)
+
+libxft-dev
+# Font drawing library for X
+# (xmonad)
+
+libxinerama-dev
+# X11 Xinerama extension library
+# (xmonad)
+
+libxrandr-dev
+# X11 RandR extension library
+# (xmonad)
+
+libxss-dev
+# X11 Screen saver extension
+# (xmonad)
+
+haskell-stack
+# The Haskell Tool Stack 
+# (xmonad)
+
+pkg-config 
+# Manage compile and link files for libraries
+# (alacritty)
+
+libfreetype6-dev 
+# FreeType 2 font engine
+# (alacritty)
+
+libfontconfig1-dev 
+# generic font configuration libarary
+# (alacritty)
+
+libxcb-xfixes0-dev 
+# X C Binding, xfixes extension
+# (alacritty)
+
+libxkbcommon-dev
+# library interface to the XKB compiler
+# (alacritty)
+
+libnotify-bin
+# Sends desktop notifications to a notification daemon
+# (dunst)
+
+libnotify-dev
+# Sends desktop notifications to a notification daemon
+# (dunst)
+
+libcanberra-gtk-module 
+# Translates Gtk+ widgets signlas to event sounds
+# (spotify-adblock)
+
+xmobar
+# Recommended Bar for xmonad
+# (xmonad)
+
+trayer
+# Lightweight GTK2-based systray for UNIX desktop
+# (xmobar)
+
+lua-nvim-dev
+# Lua client for Neovim
+# (neovim)
+
+################################################################################
+## Xorg and X11 ##
+################################################################################
+xserver-xorg-core xinit 
+# Startx
+
+xserver-xorg-video-amdgpu
+# Amdgpu driver for xorg
+
+x11-utils
+# X11 utilities 
+
+dbus-x11
+# Simple interprocess messaging system for X11
+
+################################################################################
+## GPU ##
+################################################################################
+firmware-amd-graphics
+# Amd proprietary Drivers
+
+libgl1-mesa-dri
+# OpenGL (GLX and DRI)
+
+################################################################################
+## Wifi and other Media ##
+################################################################################
+firmware-realtek
+# Realtek proprietary Drivers
+
+################################################################################
+## Base ##
+################################################################################
+gdebi-core
+# Simple tool to install deb files
+
+build-essential
+# Package required for build programs for src
+
+cmake 
+# Corss platform, open-source make system
+
+git
+# Version Control system
+
+curl
+# Command line tool for transfering data with URL syntax
+
+wget
+# Retrieves files from the web
+
+sed
+# Unix utility that parses and transforms text
+
+unzip
+# Unzip using cli
+
+engrampa
+# Gui extraction software
+
+software-properties-common
+# Manage repositories 
+
+xdg-utils
+# Integration utilities
+
+usbutils
+# Usb management commands (i.e: lsusb)
+
+pciutils
+# Inspect pci devices
+
+tree
+# Tree listing
+
+mount
+# Mount filesystems and more
+
+neofetch
+# Shows Linux system info with disro logo
+
+conky
+# Highly configurable system monitor
+
+arandr
+# Another xrandr gui
+
+gpick
+# Advanced GTK+ color picker
+
+qbittorrent
+# Gui torrent client
+
+vlc
+# Multimedia player
+
+fzf
+# General-purpose cli fuzzy finder
+
+xcwd
+# Print the current working directory of the focused window
+
+xdotool
+# Simulate (generate) X11 keyboar/mouse input events
+
+numlockx
+# Cli numlock on/off command
+
+physlock
+# Lightweight linux console locking tool
+
+xfce4-power-manager
+# Power manager
+
+gnome-keyring
+# Gnome-keyring services (daemon and tools)
+
+seahorse
+# GNOME front end for GnuPG
+
+gnome-disk-utility
+# Manage and configrue disk drives and media
+
+htop
+# Interactive processes viewer
+
+bash
+# Bourne Again shell
+
+dash
+# Debian Almquist shell
+
+fish
+# Friendly Interactive shell
+
+alsa-utils
+# Utilities for configuring alsa
+
+pavucontrol
+# Pulse audio volume controls
+
+lxappearance
+# LXDE GTK+ theme switcher
+
+libdbus-1-dev
+libglib2.0-dev
+libpango1.0-dev
+libgtk-3-dev
+libxdg-basedir-dev
+playerctl
+# Utility to control media players via MPRIS
+hostname
+hplip-gui
+
+sudo
+# Provide limited super user privileges to specific users
+
+picom
+# Compositor
+
+fontconfig
+# Generic font configuration libarary
+
+fonts-firacode
+
+mlocate
+# Quickly find file on the filesystem based on their names
+
+rofi
+# App launcher and more
+
+firefox-esr
+# Browser
+
+feh
+# Image viewer
+
+scrot
+# Take Screenshots
+
+gimp
+# Gnu Image Manipulation Program
+
+network-manager-gnome
+# Network manager gui
+
+pcmanfm
+# Lightweight file manage
+
+################################################################################
+## Prgraming Languages and Tools ##
+################################################################################
+python-is-python3
+# Python3
+python3-pip
+# Package manager for Python Pakages
+
+python2
+
+default-jdk
+# Standard Java Devlopment Kit
+
+default-jre
+# Standard Java Runtime
+
+###########
+## E.O.F ##
+###########

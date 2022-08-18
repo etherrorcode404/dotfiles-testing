@@ -1,5 +1,9 @@
 #!/bin/bash
 
+##########################################
+## Script Dependencies: grep, sudo, cat ##
+##########################################
+
 if [ "$(id -u)" = 0 ]; then
     echo "##################################################################"
     echo "This script MUST NOT be run as root user since it makes changes"
@@ -15,26 +19,36 @@ error() { \
     clear; printf "ERROR:\\n%s\\n" "$1" >&2; exit 1;
 }
 
+echo "#####################################################################"
+echo "## Updating and installing 'Script Dependencies' if not installed  ##"
+echo "#####################################################################"
+sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
+sudo apt-get install -qq -f -y dialog grep
+
+echo "#####################################"
+echo "## Adding 'non-free' and 'contrib' ##"
+echo "#####################################"
+sleep 2s 
+sudo apt-get install -qq -f -y software-properties-common
+sudo apt-add-repository contrib && sudo apt-add-repository non-free
+sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
+
 echo "########################"
 echo "## Adding 'nala' repo ##"
 echo "########################"
 echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
-echo ""
-echo "#####################################################################"
-echo "## Updating and installing 'dialog' 'nala-legacy' if not installed ##"
-echo "#####################################################################"
-sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
-sudo apt-get install -qq -f -y dialog nala-legacy
 
 echo "######################"
 echo "## Updating Mirrors ##"
 echo "######################"
 sudo nala fetch
 echo installing the pre-requisites..
-sleep 3s
+sleep 2s
+egrep -v "^$|^[[:space:]]*#" $(pwd)/pkglist > pkginstall
 while read -r p ; do sudo apt-get install -qq -f -y $p ; done < <(cat << "EOF"
+  nala-legacy
   xserver-xorg-core xinit 
   xserver-xorg-video-amdgpu
   firmware-amd-graphics
@@ -148,6 +162,8 @@ echo "## Alacritty ##"
 sleep 2s
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
+rustup override set stable
+rustup update stable
 cargo install alacritty
 wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
 sudo mkdir -p /usr/local/share/applications/
