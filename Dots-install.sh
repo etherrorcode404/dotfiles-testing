@@ -15,7 +15,7 @@ repository="https://github.com/etherrorcode404/dotfiles.git"
 exclude=(".gitmodules" "README.md" "Desktop-entries" "Dots-install.sh" "Debian-install.sh")
 
 function clone(){
-  git clone --bare "$repository" 
+  git clone --bare "$repository" "$GIT_DIR"
 }
 
 function delete(){
@@ -36,7 +36,6 @@ function backup(){
 }
 
 function install(){
-  git switch -f $branch
   git checkout
   git submodule update --init
   git config status.showUntrackedFiles no
