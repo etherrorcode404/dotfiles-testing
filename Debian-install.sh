@@ -39,6 +39,7 @@ echo "########################"
 echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+sudo apt-get update && sudo apt-get install -qq -f -y nala-legacy
 
 echo "######################"
 echo "## Updating Mirrors ##"
@@ -47,96 +48,7 @@ sudo nala fetch
 echo installing the pre-requisites..
 sleep 2s
 egrep -v "^$|^[[:space:]]*#" $(pwd)/pkglist > pkginstall
-while read -r p ; do sudo apt-get install -qq -f -y $p ; done < <(cat << "EOF"
-  nala-legacy
-  xserver-xorg-core xinit 
-  xserver-xorg-video-amdgpu
-  firmware-amd-graphics
-  firmware-realtek
-  libgl1-mesa-dri
-  x11-utils
-  arandr
-  git
-  curl
-  libcanberra-gtk-module 
-  wget
-  sed
-  unzip
-  engrampa
-  fzf
-  gpick
-  xcwd
-  xdotool
-  numlockx
-  physlock
-  xfce4-power-manager
-  gnome-keyring
-  seahorse
-  gnome-disk-utility
-  htop
-  bash
-  dash
-  fish
-  alsa-utils
-  libnotify-bin
-  libnotify-dev
-  libdbus-1-dev
-  libglib2.0-dev
-  libpango1.0-dev
-  libgtk-3-dev
-  libxdg-basedir-dev
-  pavucontrol
-  dbus-x11
-  playerctl
-  qbittorrent
-  conky
-  lxappearance
-  hostname
-  hplip-gui
-  sudo
-  picom
-  build-essential
-  software-properties-common
-  xdg-utils
-  usbutils
-  pciutils
-  tree
-  mount
-  xmobar
-  trayer
-  lua-nvim
-  fontconfig
-  fonts-firacode
-  mlocate
-  default-jdk
-  default-jre
-  python-is-python2
-  python2
-  python3
-  python3-pip
-  rofi
-  firefox-esr
-  feh
-  scrot
-  gimp
-  network-manager-gnome
-  pcmanfm
-  vlc
-  cmake 
-  pkg-config 
-  libfreetype6-dev 
-  libfontconfig1-dev 
-  libxcb-xfixes0-dev 
-  libxkbcommon-dev
-  libx11-dev
-  libxft-dev
-  libxinerama-dev
-  libxrandr-dev
-  libxss-dev
-  haskell-stack
-  gdebi-core
-EOF
-)
+sudo nala install $(cat pkginstall)
 
 echo "##################################"
 echo "## Building and adding Programs ##"
