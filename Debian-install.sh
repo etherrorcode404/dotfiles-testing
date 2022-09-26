@@ -39,7 +39,7 @@ echo "########################"
 echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
-sudo apt-get update && sudo apt-get install -qq -f -y nala-legacy
+sudo apt-get update && sudo apt-get install -qq -f -y nala
 
 echo "######################"
 echo "## Updating Mirrors ##"
