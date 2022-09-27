@@ -22,6 +22,7 @@ error() { \
 echo "#####################################################################"
 echo "## Updating and installing 'Script Dependencies' if not installed  ##"
 echo "#####################################################################"
+sudo mv $(pwd)/sources.list /etc/apt/
 sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
 sudo apt-get install -qq -f -y dialog grep
 
