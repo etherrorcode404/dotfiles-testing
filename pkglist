@@ -11,6 +11,7 @@
 # github-desktop (Github-gui Client)
 # neovim (Enhanced Code Editor)
 # spotify-adblock (Music Player)
+# brave-browser (Browser)
 
 ################################################################################
 ## Dependencies ##
@@ -148,6 +149,9 @@ build-essential
 cmake 
 # Corss platform, open-source make system
 
+apt-transport-https
+# Support for https
+
 git
 # Version Control system
 
@@ -276,9 +280,6 @@ mlocate
 
 rofi
 # App launcher and more
-
-firefox-esr
-# Browser
 
 feh
 # Image viewer

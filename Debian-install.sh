@@ -115,6 +115,11 @@ sudo wget -O ~/.local/share/applications/spotify-adblock.desktop "https:// LINK 
 sudo chmod +x ~/.local/share/applications/spotify-adblock.desktop
 sudo chmod 775 ~/.local/share/applications/spotify-adblock.desktop
 
+echo "## Brave Browser ##"
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt-get update && sudo apt-get install -qq -f -y brave-browser
+
 echo "## Git-Hub Desktop ##"
 wget -qO - https://mirror.mwt.me/ghd/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
 sudo sh -c 'echo "deb [arch=amd64] https://mirror.mwt.me/ghd/deb/ any main" > /etc/apt/sources.list.d/packagecloud-shiftkey-desktop.list'
