@@ -111,7 +111,7 @@ make
 sudo make install
 cd $HOME
 mkdir -p ~/.local/share/applications
-sudo wget -O ~/.local/share/applications/spotify.desktop "https:// LINK HERE" 
+sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/Desktop-entries/spotify.desktop" 
 sudo chmod +x ~/.local/share/applications/spotify.desktop
 sudo chmod 775 ~/.local/share/applications/spotify.desktop
 
