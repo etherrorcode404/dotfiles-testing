@@ -111,9 +111,9 @@ make
 sudo make install
 cd $HOME
 mkdir -p ~/.local/share/applications
-sudo wget -O ~/.local/share/applications/spotify-adblock.desktop "https:// LINK HERE" 
-sudo chmod +x ~/.local/share/applications/spotify-adblock.desktop
-sudo chmod 775 ~/.local/share/applications/spotify-adblock.desktop
+sudo wget -O ~/.local/share/applications/spotify.desktop "https:// LINK HERE" 
+sudo chmod +x ~/.local/share/applications/spotify.desktop
+sudo chmod 775 ~/.local/share/applications/spotify.desktop
 
 echo "## Brave Browser ##"
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
