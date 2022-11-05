@@ -62,8 +62,8 @@ sudo wget -O /usr/share/fonts/nerd-fonts/Fira\ Code\ Regular\ Nerd\ Font\ Comple
 echo "## Gruvbox Material GTK ##"
 sleep 2s
 git clone https://github.com/etherrorcode404/gruvbox-material-gtk.git
-mv $(pwd)/gruvbox-material-gtk/icons/Gruvbox-Material-Dark /usr/share/icons/
-mv $(pwd)/gruvbox-material-gtk/themes/Gruvbox-Material-Dark /usr/share/themes/
+sudo mv $(pwd)/gruvbox-material-gtk/icons/Gruvbox-Material-Dark /usr/share/icons/
+sudo mv $(pwd)/gruvbox-material-gtk/themes/Gruvbox-Material-Dark /usr/share/themes/
 
 echo "## Dunst ##"
 sleep 2s
@@ -103,7 +103,7 @@ echo "## Spotify & adblock ##"
 sleep 2s
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo gpg --dearmor -o /usr/share/keyrings/spotify-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/spotify-archive-keyring.gpg] http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo nala update && nala install spotify-client
+sudo nala update && sudo nala install spotify-client
 sudo rm -rf /usr/local/share/applications/spotify.desktop
 git clone https://github.com/abba23/spotify-adblock.git
 cd spotify-adblock
