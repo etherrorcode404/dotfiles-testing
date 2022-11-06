@@ -39,9 +39,9 @@ Config {
         , Run Com "bash" ["-c", "~/.config/xmobar/volume.sh"] "volume" 5
                -- Microphone Script
         , Run Com "bash" ["-c", "~/.config/xmobar/microphone.sh"] "microphone" 5
-               -- Time and date indicator 
-        , Run Date "<fc=#e2cca9> </fc> %H:%M %p %d/%b/%y" "date" 10
-        ,  Run UnsafeXMonadLog
+               -- date indicator 
+        , Run Com "bash" ["-c", "~/.config/xmobar/date.sh"] "date" 5
+        , Run UnsafeXMonadLog
         ]
    -- , pickBroadest = False    -- Choose widest display (multi-monitor)
    }
