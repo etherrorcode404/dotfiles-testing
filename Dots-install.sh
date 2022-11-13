@@ -20,17 +20,10 @@ function clone(){
 
 function delete(){
   for files in $(git ls-tree -r --name-only HEAD); do
-    if [[ -e "$files" ]]; then
-      sudo rm -rf "$files"
-    fi
-  done
-}
-
-function backup(){
-  for files in $(git ls-tree -r --name-only HEAD); do
     if [[ -e "$file" ]]; then
       mkdir -p "$backupdir"
       mv "$files" "$backupdir"
+      rm -rf "$backupdir"
     fi
   done
 }
@@ -46,5 +39,4 @@ function install(){
 
 clone
 delete  
-#backup
 install 
