@@ -139,6 +139,12 @@ echo "## Discord ##"
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo apt-get install -qq -f -y ./discord.deb
 
+echo "## Shell ##"
+echo "symlink in /bin/sh:"
+readlink /bin/sh
+echo "symlink in /usr/bin/sh:"
+readlik /usr/bin/sh
+
 echo "## Clean UP ##"
 sleep 2s
 rm -rf GithubDesktop-linux-3.0.3-linux1.deb zoom_amd64.deb discord.deb
