@@ -7,5 +7,5 @@ git clone --recurse-submodules https://github.com/etherrorcode404/dotfiles
 
 ## For actual use
 ```
-bash <(curl -LfsS https://github.com/etherrorcode404/dotfiles/raw/main/install-dotfiles.sh)
+bash <(curl -LfsS https://github.com/etherrorcode404/dotfiles/raw/master/install-dotfiles.sh)
 ```
