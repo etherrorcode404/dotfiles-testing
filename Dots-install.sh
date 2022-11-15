@@ -1,29 +1,27 @@
 #!/bin/bash
 
-################################################################################
-#  Install dotfiles as a bare git repository. Conflicting files found during   #
-#  installation can be deleted or moved to "dotfiles.backup"                   #
-#                              Dependencies: git, rm, sudo                     #
-################################################################################
+###############################################################################
+#  Install dotfiles as a bare git repository. Conflicting files found during  #
+#              installation are moved to $HOME/dotfiles.backup.               #
+#                              Dependencies: git                              #
+###############################################################################
 
 set -o errexit
 export GIT_WORK_TREE="$HOME"
 export GIT_DIR="$GIT_WORK_TREE/.dotfiles"
 backupdir="$GIT_WORK_TREE/dotfiles.backup"
-dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 repository="https://github.com/etherrorcode404/dotfiles.git"
-exclude=(".gitmodules" "README.md" "Desktop-entries" "Dots-install.sh" "Debian-install.sh")
+exclude=(".gitmodules" "README.md" "LICENSE" "install-*")
 
 function clone(){
   git clone --bare "$repository" "$GIT_DIR"
 }
 
-function delete(){
-  for files in $(git ls-tree -r --name-only HEAD); do
+function backup(){
+  for file in $(git ls-tree -r --name-only HEAD); do
     if [[ -e "$file" ]]; then
       mkdir -p "$backupdir"
-      mv "$files" "$backupdir"
-      rm -rf "$backupdir"
+      mv "$file" "$backupdir"
     fi
   done
 }
@@ -34,9 +32,9 @@ function install(){
   git config status.showUntrackedFiles no
   git config core.worktree "$GIT_WORK_TREE"
   git config alias.edit '!env -C "${GIT_PREFIX:-.}" $EDITOR'
-  git sparse-checkout set "*" "${exclude[@]/#/\!} --no-cone"
+  git sparse-checkout set "*" "${exclude[@]/#/\!}" --no-cone
 }
 
 clone
-delete  
-install 
+backup
+install
