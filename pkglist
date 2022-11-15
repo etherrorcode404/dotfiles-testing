@@ -245,6 +245,9 @@ dash
 fish
 # Friendly Interactive shell
 
+exa
+# Modern alternative to ls
+
 alsa-utils
 # Utilities for configuring alsa
 
@@ -262,6 +265,9 @@ hostname
 
 hplip-gui
 # HP Linux Printing and Imaging GUI
+
+cups
+# Common UNIX Printing System
 
 sudo
 # Provide limited super user privileges to specific users
