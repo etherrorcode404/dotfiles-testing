@@ -4,7 +4,7 @@ Config {
    , bgColor =      "#1d2021"
    , fgColor =      "#e2cca9"
    , borderColor =  "#1d2021"
-   , position =     TopP 0 100,
+   , position =     BottomP 0 100,
    -- , additionalFonts = ["xft::size=10"]
    -- , alpha = 175
    -- , border =       BottomB
@@ -23,12 +23,12 @@ Config {
    , commands = 
         [
                -- Cpu activity monitor
-          Run Cpu            [ "--template" , "<fc=#e2cca9> </fc> Cpu <total>% "
+          Run Cpu            [ "--template" , "<fc=#f2594b> </fc> Cpu <total>% "
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              ] 50
                -- Memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#e2cca9> </fc> Mem <usedratio>% "
+        , Run Memory         [ "--template" ,"<fc=#d3869b> </fc> Mem <usedratio>% "
                              , "--Low"      , "1000"        -- units: M
                              , "--High"     , "6000"        -- units: M
 

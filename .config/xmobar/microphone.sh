@@ -10,7 +10,7 @@
 
 #~/.config/xmobar/AudioProfile.sh
 
-orange=#e2cca9
+orange=#f28534
 white=#e2cca9
 
 bar=$(amixer get Capture | tail -n 1)

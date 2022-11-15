@@ -9,7 +9,7 @@ case $((volume/50)) in
 esac
 
 if [[ "${status}" == "on" ]]; then
-  echo "<fc=#e2cca9>$icon </fc>Vol ${volume}% "
+  echo "<fc=#b0b846>$icon </fc>Vol ${volume}% "
 else
-  echo "<fc=#e2cca9>婢 </fc>Mute "
+  echo "<fc=#b0b846>婢 </fc>Mute "
 fi
