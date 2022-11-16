@@ -11,7 +11,7 @@ export GIT_WORK_TREE="$HOME"
 export GIT_DIR="$GIT_WORK_TREE/.dotfiles"
 backupdir="$GIT_WORK_TREE/dotfiles.backup"
 repository="https://github.com/etherrorcode404/dotfiles.git"
-exclude=(".gitmodules" "README.md" "LICENSE" ".local/bin/install-*" "/Desktop-entries")
+exclude=(".gitmodules" "README.md" "LICENSE" ".local/bin/install-*" "*.desktop")
 
 function clone(){
   git clone --bare "$repository" "$GIT_DIR"
