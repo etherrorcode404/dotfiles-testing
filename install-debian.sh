@@ -29,7 +29,7 @@ sudo apt-get install -qq -f -y dialog grep
 echo "#####################################"
 echo "## Adding 'non-free' and 'contrib' ##"
 echo "#####################################"
-sleep 2s 
+sleep 2s
 sudo apt-get install -qq -f -y software-properties-common
 sudo apt-add-repository contrib && sudo apt-add-repository non-free
 sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
@@ -40,7 +40,7 @@ echo "########################"
 echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
-sudo apt-get update && sudo apt-get install -qq -f -y nala
+sudo apt-get update && sudo apt-get install -qq -f -y nala-legacy
 
 echo "######################"
 echo "## Updating Mirrors ##"
@@ -94,7 +94,7 @@ stack upgrade
 stack init
 stack install
 sudo ln -s ~/.local/bin/xmonad /usr/bin
-sudo wget -O /usr/share/xsessions/xmonad.desktop "https://LINK HERE" 
+sudo wget -O /usr/share/xsessions/xmonad.desktop "https://LINK HERE"
 sudo chmod +x /usr/share/xsessions/xmonad.desktop
 sudo chmod 775 /usr/share/xsessions/xmonad.desktop
 cd $HOME
@@ -111,7 +111,7 @@ make
 sudo make install
 cd $HOME
 mkdir -p ~/.local/share/applications
-sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/Desktop-entries/spotify.desktop" 
+sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/Desktop-entries/spotify.desktop"
 sudo chmod +x ~/.local/share/applications/spotify.desktop
 sudo chmod 775 ~/.local/share/applications/spotify.desktop
 
@@ -133,7 +133,7 @@ sudo apt-get install -qq -f -y ./neovim-linux64.deb
 
 echo "## Zoom ##"
 wget https://zoom.us/client/latest/zoom_amd64.deb
-sudo apt-get install -qq -f -y ./zoom_amd64.deb 
+sudo apt-get install -qq -f -y ./zoom_amd64.deb
 
 echo "## Discord ##"
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
