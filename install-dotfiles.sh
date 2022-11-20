@@ -30,7 +30,7 @@ function install(){
   git checkout
   git submodule update --init
   git config status.showUntrackedFiles no
-  git config core.worktree "$HOME"
+  git config core.worktree "$GIT_WORK_TREE"
   git config alias.edit '!env -C "${GIT_PREFIX:-.}" $EDITOR'
   git sparse-checkout set "*" "${exclude[@]/#/\!}" --no-cone
 }
