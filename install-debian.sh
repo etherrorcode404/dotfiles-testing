@@ -129,15 +129,15 @@ echo "## Neovim ##"
 sudo apt-get autoremove -qq -y neovim
 sudo apt-get autoremove -qq -y neovim-runtime
 wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
-sudo apt-get install -qq -f -y ./neovim-linux64.deb
+sudo nala install ./nvim-linux64.deb
 
 echo "## Zoom ##"
 wget https://zoom.us/client/latest/zoom_amd64.deb
-sudo apt-get install -qq -f -y ./zoom_amd64.deb
+sudo nala install ./zoom_amd64.deb
 
 echo "## Discord ##"
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-sudo apt-get install -qq -f -y ./discord.deb
+sudo nala install ./discord.deb
 
 echo "## Shell ##"
 echo "symlink in /bin/sh:"
