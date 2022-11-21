@@ -24,7 +24,7 @@ echo "## Updating and installing 'Script Dependencies' if not installed  ##"
 echo "#####################################################################"
 sudo cp -r $(pwd)/sources.list /etc/apt/
 sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
-sudo apt-get install -qq -f -y dialog grep
+sudo apt-get install -qq -f -y dialog grep wget
 
 echo "#####################################"
 echo "## Adding 'non-free' and 'contrib' ##"
@@ -94,7 +94,7 @@ stack upgrade
 stack init
 stack install
 sudo ln -s ~/.local/bin/xmonad /usr/bin
-sudo wget -O /usr/share/xsessions/xmonad.desktop "https://LINK HERE"
+sudo wget -O /usr/share/xsessions/xmonad.desktop "https://githubusercontent.com/etherrorcode404/main/xmonad.dekstop"
 sudo chmod +x /usr/share/xsessions/xmonad.desktop
 sudo chmod 775 /usr/share/xsessions/xmonad.desktop
 cd $HOME
@@ -111,7 +111,7 @@ make
 sudo make install
 cd $HOME
 mkdir -p ~/.local/share/applications
-sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/Desktop-entries/spotify.desktop"
+sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/master/spotify.desktop"
 sudo chmod +x ~/.local/share/applications/spotify.desktop
 sudo chmod 775 ~/.local/share/applications/spotify.desktop
 
