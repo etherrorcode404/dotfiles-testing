@@ -1,3 +1,6 @@
-2022/11/23-00:05:39.857 5 Reusing MANIFEST /home/ether/.config/BraveSoftware/Brave-Browser/Default/Local Storage/leveldb/MANIFEST-000001
-2022/11/23-00:05:39.858 5 Recovering log #3
-2022/11/23-00:05:39.858 5 Reusing old log /home/ether/.config/BraveSoftware/Brave-Browser/Default/Local Storage/leveldb/000003.log 
+2022/11/24-00:19:32.381 3 Reusing MANIFEST /home/ether/.config/BraveSoftware/Brave-Browser/Default/Local Storage/leveldb/MANIFEST-000001
+2022/11/24-00:19:32.383 3 Recovering log #7
+2022/11/24-00:19:32.383 3 Reusing old log /home/ether/.config/BraveSoftware/Brave-Browser/Default/Local Storage/leveldb/000007.log 
+2022/11/24-00:21:42.795 5 Level-0 table #10: started
+2022/11/24-00:21:42.803 5 Level-0 table #10: 125361 bytes OK
+2022/11/24-00:21:42.806 5 Delete type=0 #7

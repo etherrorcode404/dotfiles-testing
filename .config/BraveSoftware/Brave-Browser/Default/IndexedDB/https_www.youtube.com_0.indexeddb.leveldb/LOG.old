@@ -1,0 +1,6 @@
+2022/11/23-23:27:30.458 1ffd9 Reusing MANIFEST /home/ether/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/11/23-23:27:30.459 1ffd9 Recovering log #21
+2022/11/23-23:27:30.524 1ffd9 Reusing old log /home/ether/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/000021.log 
+2022/11/23-23:28:11.097 22487 Level-0 table #26: started
+2022/11/23-23:28:11.116 22487 Level-0 table #26: 1132536 bytes OK
+2022/11/23-23:28:11.120 22487 Delete type=0 #21

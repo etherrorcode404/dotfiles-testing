@@ -1,0 +1,9 @@
+2022/11/23-23:45:31.406 3b91e Reusing MANIFEST /home/ether/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/11/23-23:45:31.406 3b91e Recovering log #25
+2022/11/23-23:45:31.406 3b91e Reusing old log /home/ether/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/000025.log 
+2022/11/23-23:45:32.745 3b967 Compacting 1@1 + 1@2 files
+2022/11/23-23:45:32.757 3b967 Generated table #28@1: 369 keys, 35954 bytes
+2022/11/23-23:45:32.757 3b967 Compacted 1@1 + 1@2 files => 35954 bytes
+2022/11/23-23:45:32.759 3b967 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/11/23-23:45:32.760 3b967 Delete type=2 #23
+2022/11/23-23:45:32.760 3b967 Delete type=2 #26

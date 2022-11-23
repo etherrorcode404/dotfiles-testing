@@ -1,3 +1,6 @@
-2022/11/23-00:05:40.450 5 Reusing MANIFEST /home/ether/.config/BraveSoftware/Brave-Browser/Default/Session Storage/MANIFEST-000001
-2022/11/23-00:05:40.451 5 Recovering log #3
-2022/11/23-00:05:40.453 5 Reusing old log /home/ether/.config/BraveSoftware/Brave-Browser/Default/Session Storage/000003.log 
+2022/11/24-00:19:32.983 3 Reusing MANIFEST /home/ether/.config/BraveSoftware/Brave-Browser/Default/Session Storage/MANIFEST-000001
+2022/11/24-00:19:32.988 3 Recovering log #6
+2022/11/24-00:19:32.989 3 Reusing old log /home/ether/.config/BraveSoftware/Brave-Browser/Default/Session Storage/000006.log 
+2022/11/24-00:25:28.481 5 Level-0 table #10: started
+2022/11/24-00:25:28.486 5 Level-0 table #10: 17356 bytes OK
+2022/11/24-00:25:28.492 5 Delete type=0 #6

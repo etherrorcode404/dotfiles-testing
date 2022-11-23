@@ -1,0 +1,5 @@
+2022/11/24-00:19:33.040 668df Recovering log #3
+2022/11/24-00:19:33.412 668df Level-0 table #5: started
+2022/11/24-00:19:33.528 668df Level-0 table #5: 2784740 bytes OK
+2022/11/24-00:19:33.546 668df Delete type=3 #2
+2022/11/24-00:19:33.546 668df Delete type=0 #3
