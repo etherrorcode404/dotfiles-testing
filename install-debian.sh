@@ -140,6 +140,8 @@ wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=d
 sudo nala install ./discord.deb
 
 echo "## Shell ##"
+echo "Installing fish from backports.."
+sudo apt-get install -qq -f -y fish/bullseye-backports
 echo "symlink in /bin/sh:"
 readlink /bin/sh
 echo "symlink in /usr/bin/sh:"
@@ -149,6 +151,5 @@ echo "## Clean UP ##"
 sleep 2s
 rm -rf GithubDesktop-linux-3.0.3-linux1.deb zoom_amd64.deb discord.deb
 rm -rf gruvbox-material-gtk spotify-adblock
-xrandr --output HDMI-A-0 --mode 1920x1080 --rate 75.00
 sudo apt-get autopurge
 sudo apt-get update && sudo apt-get dist-upgrade
