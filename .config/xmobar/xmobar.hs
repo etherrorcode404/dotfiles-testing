@@ -8,19 +8,19 @@ Config {
    -- , additionalFonts = ["xft::size=10"]
    -- , alpha = 175
    -- , border =       BottomB
-   
+
    -- Layout
    , sepChar =  "%"   -- Delineator between plugin names and straight text
    , alignSep = "}{"  -- Separator between left-right alignment
-   , template = "%UnsafeXMonadLog% %capslock%}{<action=`amixer set Master toggle`>%volume%</action>| <action=`amixer -q sset Capture toggle`>%microphone%</action>| %memory%| %cpu%| %date%    "
-   
+   , template = "%UnsafeXMonadLog% }{<action=`pavucontrol -t 4`>%microphone%</action>| %memory%| %cpu%| %date%    "
+
    -- General behavior
    , allDesktops = True         -- Show on all desktops
    , persistent = True          -- Enable/disable hiding (True = disabled)
    , hideOnStart = False        -- Start with window unmapped (hidden)
    , overrideRedirect = True    -- Set the Override Redirect flag (Xlib)
    , lowerOnStart = True        -- Send to bottom of window stack on start
-   , commands = 
+   , commands =
         [
                -- Cpu activity monitor
           Run Cpu            [ "--template" , "<fc=#f2594b> </fc> Cpu <total>% "
@@ -34,13 +34,13 @@ Config {
 
                              ] 50
                -- CapsLock Script
-        , Run Com "bash" ["-c", "~/.config/xmobar/capslock.sh"] "capslock" 1
+        --, Run Com "bash" ["-c", "~/.config/xmobar/capslock.sh"] "capslock" 1
                -- Volume Script
-        , Run Com "bash" ["-c", "~/.config/xmobar/volume.sh"] "volume" 5
+        -- , Run Com "bash" ["-c", "~/.config/xmobar/volume.sh"] "volume" 5
                -- Microphone Script
         , Run Com "bash" ["-c", "~/.config/xmobar/microphone.sh"] "microphone" 5
-               -- date indicator 
-        , Run Com "bash" ["-c", "~/.config/xmobar/date.sh"] "date" 5
+               -- date indicator
+        , Run Com "bash" ["-c", "~/.config/xmobar/date.sh"] "date" 60
         , Run UnsafeXMonadLog
         ]
    -- , pickBroadest = False    -- Choose widest display (multi-monitor)
