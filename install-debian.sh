@@ -153,5 +153,3 @@ rm -rf GithubDesktop-linux-3.0.3-linux1.deb zoom_amd64.deb discord.deb
 rm -rf gruvbox-material-gtk spotify-adblock
 sudo apt-get autopurge
 sudo apt-get update && sudo apt-get dist-upgrade
-printf "" >> /etc/pulse/default.pa
-sed -i -e '$a ### Switch audio automatically to the device just added (Bluetooth, HDMI, USB) \nload-module module-switch-on-connect' /etc/pulse/default.pa
