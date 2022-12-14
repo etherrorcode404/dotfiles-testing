@@ -37,11 +37,11 @@ libxft-dev
 # (xmonad)
 
 haskell-stack
-# The Haskell Tool Stack 
+# The Haskell Tool Stack
 # (xmonad)
 
 libdbus-1-dev
-# Simple interprocess messaging system 
+# Simple interprocess messaging system
 # (dunst)
 
 libglib2.0-dev
@@ -68,19 +68,19 @@ libnotify-dev
 # Sends desktop notifications to a notification daemon
 # (dunst)
 
-pkg-config 
+pkg-config
 # Manage compile and link files for libraries
 # (alacritty)
 
-libfreetype6-dev 
+libfreetype6-dev
 # FreeType 2 font engine
 # (alacritty)
 
-libfontconfig1-dev 
+libfontconfig1-dev
 # generic font configuration libarary
 # (alacritty)
 
-libxcb-xfixes0-dev 
+libxcb-xfixes0-dev
 # X C Binding, xfixes extension
 # (alacritty)
 
@@ -88,7 +88,7 @@ libxkbcommon-dev
 # library interface to the XKB compiler
 # (alacritty)
 
-libcanberra-gtk-module 
+libcanberra-gtk-module
 # Translates Gtk+ widgets signlas to event sounds
 # (spotify-adblock)
 
@@ -110,14 +110,14 @@ gtk2-engines-pixbuf
 ################################################################################
 ## Xorg and X11 ##
 ################################################################################
-xserver-xorg-core xinit 
+xserver-xorg-core xinit
 # Startx
 
 xserver-xorg-video-amdgpu
 # Amdgpu driver for xorg
 
 x11-utils
-# X11 utilities 
+# X11 utilities
 
 dbus-x11
 # Simple interprocess messaging system for X11
@@ -137,6 +137,27 @@ libgl1-mesa-dri
 firmware-realtek
 # Realtek proprietary Drivers
 
+firmware-atheros
+# Qualcom atheros proprietary Drivers
+
+bluetooth
+# Bluetooth mesh daemon
+
+bluez
+# Bluetooth tools and daemons
+
+bluez-tools
+# Set of tools to manager Bluetooth devices for linux
+
+blueman
+# Graphical Bluetooth manager
+
+pulseaudio-module-bluetooth
+# Bluetooth support for pulseaudio
+
+rfkill
+# Tool for enabling and disabling wireless devices
+
 ################################################################################
 ## Base ##
 ################################################################################
@@ -146,7 +167,7 @@ gdebi-core
 build-essential
 # Package required for build programs for src
 
-cmake 
+cmake
 # Corss platform, open-source make system
 
 apt-transport-https
@@ -171,7 +192,7 @@ engrampa
 # Gui extraction software
 
 software-properties-common
-# Manage repositories 
+# Manage repositories
 
 xdg-utils
 # Integration utilities
