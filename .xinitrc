@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export XDG_SESSION_TYPE=x11
+export DESKTOP_SESSION=xmonad
 systemctl --user import-environment DISPLAY XAUTHORITY
 
 if command -v dbus-update-activation-environment >/dev/null 2>&1; then
