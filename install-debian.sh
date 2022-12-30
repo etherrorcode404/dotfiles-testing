@@ -12,8 +12,7 @@ if [ "$(id -u)" = 0 ]; then
     echo "We don't want to mess around in there. So run this script as a"
     echo "normal user. You will be asked for a sudo password when necessary."
     echo "##################################################################"
-    exit 1
-fi
+    exit 1 fi
 
 error() { \
     clear; printf "ERROR:\\n%s\\n" "$1" >&2; exit 1;
@@ -73,6 +72,7 @@ sudo make WAYLAND=0 install
 
 echo "## Alacritty ##"
 sleep 2s
+cd $HOME
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 rustup override set stable
