@@ -155,6 +155,9 @@ blueman
 pulseaudio-module-bluetooth
 # Bluetooth support for pulseaudio
 
+ffmpeg
+# Tools for transcoding, streaming and playing of multimedia files
+
 rfkill
 # Tool for enabling and disabling wireless devices
 
