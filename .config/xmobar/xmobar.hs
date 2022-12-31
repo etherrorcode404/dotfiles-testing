@@ -1,18 +1,19 @@
 Config {
    -- Appearance
    font = "xft:FiraCode Nerd Font:size=10:antialias=true:autohinting=true:Regular"
-   , bgColor =      "#1d2021"
+   , bgColor =      "#282828"
    , fgColor =      "#e2cca9"
-   , borderColor =  "#1d2021"
-   , position =     BottomP 0 100,
+   --, borderColor = "#282828"
+   , position = TopSize L 100 24
+   --, position = TopP 0 100,
    -- , additionalFonts = ["xft::size=10"]
    -- , alpha = 175
-   -- , border =       BottomB
+   -- , border = BottomB
 
    -- Layout
    , sepChar =  "%"   -- Delineator between plugin names and straight text
    , alignSep = "}{"  -- Separator between left-right alignment
-   , template = "%UnsafeXMonadLog% }{<action=`pavucontrol -t 4`>%microphone%</action>| %memory%| %cpu%| %date%    "
+   , template = "%UnsafeXMonadLog% }{%volume%  <action=`pavucontrol -t 4`>%microphone%</action> %battery%  %date% %trayerpad% "
 
    -- General behavior
    , allDesktops = True         -- Show on all desktops
@@ -36,11 +37,14 @@ Config {
                -- CapsLock Script
         --, Run Com "bash" ["-c", "~/.config/xmobar/capslock.sh"] "capslock" 1
                -- Volume Script
-        -- , Run Com "bash" ["-c", "~/.config/xmobar/volume.sh"] "volume" 5
+        , Run Com "bash" ["-c", "~/.config/xmobar/volume.sh"] "volume" 5
                -- Microphone Script
         , Run Com "bash" ["-c", "~/.config/xmobar/microphone.sh"] "microphone" 5
-               -- date indicator
+        , Run Com "bash" ["-c", "~/.config/xmobar/battery.sh"] "battery" 5
+               -- Date indicator
         , Run Com "bash" ["-c", "~/.config/xmobar/date.sh"] "date" 60
+               -- Trayerpadding
+        , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
         , Run UnsafeXMonadLog
         ]
    -- , pickBroadest = False    -- Choose widest display (multi-monitor)

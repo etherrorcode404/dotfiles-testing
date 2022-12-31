@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "<fc=#8bba7f> </fc>" $(date +"%I:%M %p %d/%b/%y")
+echo "<fc=#8ec07c> $(date +"%I:%M %p %d/%b/%y")</fc>"

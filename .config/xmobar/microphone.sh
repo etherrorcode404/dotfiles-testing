@@ -17,8 +17,9 @@ bar=$(amixer get Capture | tail -n 1)
 status=$(echo "${bar}" | grep -wo "on")
 volume=$(echo "${bar}" | awk -F ' ' '{print $4}' | tr -d '[]%')
 
-if [[ "${status}" == "on" ]]; then
-  echo "<fc=$orange> </fc>Vol ${volume}% "
+if [[ ${status} == "on" ]]; then
+  echo "<fc=$orange> Unmute</fc> "
+  #echo "<fc=$orange> </fc>Vol ${volume}% "
 else
-  echo "<fc=$orange> </fc>Mute "
+  echo "<fc=$orange> Mute</fc> "
 fi

@@ -8,8 +8,8 @@ case $((volume/50)) in
   *) icon="墳" ;;
 esac
 
-if [[ "${status}" == "on" ]]; then
-  echo "<fc=#b0b846>$icon </fc>Vol ${volume}% "
+if [[ ${status} == "on" ]]; then
+  echo "<fc=#b0b846>$icon Vol ${volume}%</fc>"
 else
-  echo "<fc=#b0b846>婢 </fc>Mute "
+  echo "<fc=#b0b846>婢 Mute</fc>"
 fi
