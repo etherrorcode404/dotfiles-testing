@@ -1,0 +1,9 @@
+audio.downmixer_v2=true
+audio.crossfade_v2=true
+audio.play_bitrate_non_metered_migrated=true
+audio.sync_bitrate_enumeration=3
+audio.allow_downgrade=false
+audio.play_bitrate_enumeration=3
+audio.play_bitrate_non_metered_enumeration=3
+ui.show_friend_feed=false
+audio.loudness.environment=2
