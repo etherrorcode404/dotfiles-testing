@@ -218,6 +218,9 @@ neofetch
 conky
 # Highly configurable system monitor
 
+plank
+# Elegant, simple, clean dock
+
 arandr
 # Another xrandr gui
 
