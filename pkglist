@@ -20,6 +20,73 @@ libx11-dev
 # X11 client-side library
 # (xmonad, dunst)
 
+libx11-xcb-dev
+# (picom jonaburg)
+
+libdbus-1-dev
+# Simple interprocess messaging system
+# (dunst) (picom jonaburg)
+
+libxext-dev
+# (picom jonaburg)
+
+libxcb1-dev
+# (picom jonaburg)
+
+libxcb-damage0-dev
+# (picom jonaburg)
+
+libxcb-xfixes0-dev
+# (picom jonaburg)
+
+libxcb-shape0-dev
+# (picom jonaburg)
+
+libxcb-render-util0-dev
+# (picom jonaburg)
+
+libxcb-render0-dev
+# (picom jonaburg)
+
+libxcb-randr0-dev
+# (picom jonaburg)
+
+libxcb-composite0-dev
+# (picom jonaburg)
+
+libxcb-image0-dev
+# (picom jonaburg)
+
+libxcb-present-dev
+# (picom jonaburg)
+
+libxcb-xinerama0-dev
+# (picom jonaburg)
+
+libxcb-glx0-dev
+# (picom jonaburg)
+
+libpixman-1-dev
+# (picom jonaburg)
+
+libconfig-dev
+# (picom jonaburg)
+
+libgl1-mesa-dev
+# (picom jonaburg)
+
+libpcre2-dev
+# (picom jonaburg)
+
+libevdev-dev
+# (picom jonaburg)
+
+uthash-dev
+# (picom jonaburg)
+
+libev-dev
+# (picom jonaburg)
+
 libxss-dev
 # X11 Screen saver extension
 # (xmonad, dunst)
@@ -39,10 +106,6 @@ libxft-dev
 haskell-stack
 # The Haskell Tool Stack
 # (xmonad)
-
-libdbus-1-dev
-# Simple interprocess messaging system
-# (dunst)
 
 libglib2.0-dev
 # Glib libarary
@@ -173,6 +236,12 @@ build-essential
 cmake
 # Corss platform, open-source make system
 
+ninja-build
+# Small build system closest in spirit to Make
+
+meson
+# High productivity build system
+
 apt-transport-https
 # Support for https
 
@@ -298,9 +367,6 @@ cups
 
 sudo
 # Provide limited super user privileges to specific users
-
-picom
-# Compositor
 
 fontconfig
 # Generic font configuration libarary
