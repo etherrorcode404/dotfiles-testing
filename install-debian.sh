@@ -70,6 +70,15 @@ git clone https://github.com/dunst-project/dunst.git
 cd dunst
 sudo make WAYLAND=0 install
 
+echo "## Picom ##"
+sleep 2s
+cd $HOME
+git clone https://github.com/jonaburg/picom
+cd picom
+meson setup --buildtype=release . build
+ninja -C build
+sudo ninja -C build install
+
 echo "## Alacritty ##"
 sleep 2s
 cd $HOME
@@ -164,6 +173,6 @@ readlik /usr/bin/sh
 echo "## Clean UP ##"
 sleep 2s
 rm -rf GithubDesktop-linux-3.0.3-linux1.deb zoom_amd64.deb discord.deb
-rm -rf gruvbox-material-gtk spotify-adblock
+rm -rf gruvbox-material-gtk spotify-adblock alacritty picom
 sudo apt-get autopurge
 sudo apt-get update && sudo apt-get dist-upgrade
