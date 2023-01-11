@@ -378,6 +378,9 @@ fontconfig
 fonts-firacode
 # Fira code generic monospaced fonts
 
+fonts-dejavu
+# Metapackage to pull in fonts-dejavu-core and fonts-dejavu-extra
+
 mlocate
 # Quickly find file on the filesystem based on their names
 
