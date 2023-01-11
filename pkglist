@@ -167,6 +167,10 @@ lua-nvim-dev
 # Lua client for Neovim
 # (neovim)
 
+tidy
+# HTML/XML syntax checker and reformatter
+# (neovim) 
+
 gtk2-engines-pixbuf
 # Gtk engine
 
