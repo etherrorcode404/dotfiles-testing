@@ -151,9 +151,12 @@ function fish_prompt
     and _nim_prompt_wrapper $retc V (basename "$VIRTUAL_ENV")
 
     # Battery status
-    set -l prompt_battery (upower -i $(upower -e | grep '/battery') | grep -E percentage|xargs|cut -d' ' -f2|sed s/%//)%
-    test -n prompt_battery
-    and _battery_prompt_wrapper $retc B: $prompt_battery
+    if test -e "/proc/acpi/battery/BAT*"
+        then
+        set -l prompt_battery (upower -i $(upower -e | grep '/battery') | grep -E percentage|xargs|cut -d' ' -f2|sed s/%//)%
+        test -n prompt_battery
+        and _battery_prompt_wrapper $retc B: $prompt_battery
+    end
     # echo -n $prompt_battery
 
     # git
