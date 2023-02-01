@@ -34,14 +34,14 @@ function fish_prompt
         set_color normal
         set_color $retc
         echo -n '─'
-        set_color -o green
+        # set_color -o green
         echo -n '['
         set_color normal
         test -n $field_name
         and echo -n $field_name:
         set_color $retc
         echo -n $field_value
-        set_color -o green
+        # set_color -o green
         echo -n ']'
     end
 
@@ -62,6 +62,27 @@ function fish_prompt
         echo -n $field_value
         set_color -o magenta
         echo -n ')'
+    end
+
+    function _battery_prompt_wrapper
+        set retc $argv[1]
+        set -l field_name $argv[2]
+        set -l field_value $argv[3]
+
+        set_color normal
+        set_color $retc
+        echo -n '─'
+        # set_color -o magenta
+        set_color normal
+        set_color $retc
+        echo -n '{'
+        # set_color normal
+        test -n $field_name
+        and echo -n $field_name
+        # set_color $retc
+        echo -n $field_value
+        # set_color -o magenta
+        echo -n '}'
     end
 
     set_color $retc
@@ -129,16 +150,17 @@ function fish_prompt
     set -q VIRTUAL_ENV
     and _nim_prompt_wrapper $retc V (basename "$VIRTUAL_ENV")
 
+    # Battery status
+    set -l prompt_battery (upower -i $(upower -e | grep '/battery') | grep -E percentage|xargs|cut -d' ' -f2|sed s/%//)%
+    test -n prompt_battery
+    and _battery_prompt_wrapper $retc B: $prompt_battery
+    # echo -n $prompt_battery
+
     # git
     set -l prompt_git (fish_git_prompt '%s')
     test -n "$prompt_git"
     and _git_prompt_wrapper $retc $prompt_git
     # echo -n (fish_git_prompt)
-
-    # Battery status
-    type -q acpi
-    and test (acpi -a 2> /dev/null | string match -r off)
-    and _nim_prompt_wrapper $retc B (acpi -b | cut -d' ' -f 4-)
 
     # New line
     echo
