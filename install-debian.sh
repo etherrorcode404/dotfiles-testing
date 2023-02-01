@@ -169,6 +169,11 @@ echo "symlink in /bin/sh:"
 readlink /bin/sh
 echo "symlink in /usr/bin/sh:"
 readlik /usr/bin/sh
+fish -c "nvm install lts"
+# fish -c "npm i -g vscode-langservers-extracted"
+# fish -c "npm i -g eslint_d"
+# fish -c "npm i -g @fsouza/prettierd"
+sleep 2s
 
 echo "## Clean UP ##"
 sleep 2s
