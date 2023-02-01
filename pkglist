@@ -219,6 +219,12 @@ curl
 wget
 # Retrieves files from the web
 
+xbacklight
+# Simple utility to set backlight level
+
+redshift
+# Adjusts the color temperature of your screen
+
 sed
 # Unix utility that parses and transforms text
 
