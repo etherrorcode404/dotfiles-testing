@@ -181,3 +181,108 @@ rm -rf GithubDesktop-linux-3.0.3-linux1.deb zoom_amd64.deb discord.deb
 rm -rf gruvbox-material-gtk spotify-adblock alacritty picom
 sudo apt-get autopurge
 sudo apt-get update && sudo apt-get dist-upgrade
+
+echo "## Drivers ##"
+
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+RED='\033[1;31m'
+
+extra=$(lspci -nnk | grep -i -EA3 "3d|display|vga" | tail -n 2)
+
+echo -e "${GREEN} $extra \n"
+echo 'Choose video drivers to install you may choose multiple'
+echo 'e.g; Driver to install: xserver-xorg-intel xserver-xorg-amdgpu'
+echo -e "${BLUE} Some Options: xserver-xorg-video-amdgpu/ati/radeon/intel/nvidia/all \n"
+read -p 'Drvier to install: ' pkgs
+echo 'Choosen:' $pkgs
+sudo nala install $pkgs
+
+# Prompt to install proprietary drivers
+if [ $pkgs == "xserver-xorg-video-amdgpu" ]; then
+    echo -e "${BLUE} Would you like to install proprietary drivers? \n"
+    read -p '(Y/N):' proprietarydrivers
+    if [ $proprietarydrivers = "Y" ]; then
+        sudo nala install firmware-amd-graphics
+    fi
+elif [ $pkgs == "xserver-xorg-video-radeon" ]; then
+    echo -e "${BLUE} Would you like to install proprietary drivers? \n"
+    read -p 'Y/N: ' proprietarydrivers
+    if [ $proprietarydrivers = "Y" ]; then
+        sudo nala install firmware-amd-graphics
+    fi
+fi
+
+# Remove screen tearing
+echo -e "${BLUE} To remove screen tearing please type whatever is shown Kernel driver in use: \n"
+echo -e "${RED} $extra \n"
+read -p 'Kernel driver in use: ' kerneluse
+echo 'Choosen:' $kerneluse
+
+## AMD ##
+# radeon
+if [ $kerneluse == "radeon" ]; then
+    if [ -d "/etc/X11/" ]; then
+        echo "/etc/X11 exists"
+    else
+    sudo mkdir /etc/X11
+    fi
+touch xorg.conf && echo "Section \"Device\"
+    Identifier \"Radeon\"
+    Driver \"radeon\"
+    Option \"TearFree\" \"on\"
+EndSection" >> xorg.conf
+    FILE=/etc/X11/xorg.conf
+    if test -f "$FILE"; then
+        sudo rm -rf -v $FILE
+    fi
+    sudo mv $(pwd)/xorg.conf /etc/X11/
+    sudo chmod +x /etc/X11/xorg.conf
+    sudo chmod +775 /etc/X11/xorg.conf
+    echo "Radeon is now free of screen tearing"
+fi
+
+# amdgpu
+if [ $kerneluse == "amdgpu" ]; then
+    if [ -d "/etc/X11/xorg.conf.d" ]; then
+        echo "/etc/X11/xorg.conf.d exists"
+    else
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    fi
+touch 20-amdgpu.conf && echo "Section \"Device\"
+    Identifier \"AMD\"
+    Driver \"amdgpu\"
+    Option \"TearFree\" \"true\"
+EndSection" >> 20-amdgpu.conf
+    FILE=/etc/X11/xorg.conf.d/20-amdgpu.conf
+    if test -f "$FILE"; then
+        sudo rm -rf -v $FILE
+    fi
+    sudo mv $(pwd)/20-amdgpu.conf /etc/X11/xorg.conf.d/
+    sudo chmod +x /etc/X11/xorg.conf.d/20-amdgpu.conf
+    sudo chmod +775 /etc/X11/xorg.conf.d/20-amdgpu.conf
+    echo "Amdgpu is now free of screen tearing"
+fi
+
+## Intel ##
+# intel and nvidia
+if [ $kerneluse == "intel" ]; then
+    if [ -d "/etc/X11/xorg.conf.d" ]; then
+        echo "/etc/X11/xorg.conf.d exists"
+    else
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    fi
+touch 20-intel.conf && echo "Section \"Device\"
+    Identifier \"Intel Graphics\"
+    Driver \"intel\"
+    Option \"TearFree\" \"true\"
+EndSection" >> 20-intel.conf
+    FILE=/etc/X11/xorg.conf.d/20-intel.conf
+    if test -f "$FILE"; then
+        sudo rm -rf -v $FILE
+    fi
+    sudo mv $(pwd)/20-intel.conf /etc/X11/xorg.conf.d/
+    sudo chmod +x /etc/X11/xorg.conf.d/20-intel.conf
+    sudo chmod +775 /etc/X11/xorg.conf.d/20-intel.conf
+    echo "Intel is now free of screen tearing"
+fi

@@ -141,9 +141,6 @@ gtk2-engines-pixbuf
 xserver-xorg-core xinit
 # Startx
 
-xserver-xorg-video-amdgpu
-# Amdgpu driver for xorg
-
 x11-utils
 # X11 utilities
 
@@ -153,9 +150,6 @@ dbus-x11
 ################################################################################
 ## GPU ##
 ################################################################################
-firmware-amd-graphics
-# Amd proprietary Drivers
-
 libgl1-mesa-dri
 # OpenGL (GLX and DRI)
 
