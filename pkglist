@@ -20,71 +20,32 @@ libx11-dev
 # X11 client-side library
 # (xmonad, dunst)
 
-libx11-xcb-dev
-# (picom jonaburg)
 
 libdbus-1-dev
 # Simple interprocess messaging system
 # (dunst) (picom jonaburg)
 
-libxext-dev
-# (picom jonaburg)
-
-libxcb1-dev
-# (picom jonaburg)
-
-libxcb-damage0-dev
-# (picom jonaburg)
-
-libxcb-xfixes0-dev
-# (picom jonaburg)
-
-libxcb-shape0-dev
-# (picom jonaburg)
-
-libxcb-render-util0-dev
-# (picom jonaburg)
-
-libxcb-render0-dev
-# (picom jonaburg)
-
-libxcb-randr0-dev
-# (picom jonaburg)
-
-libxcb-composite0-dev
-# (picom jonaburg)
-
-libxcb-image0-dev
-# (picom jonaburg)
-
-libxcb-present-dev
-# (picom jonaburg)
-
-libxcb-xinerama0-dev
-# (picom jonaburg)
-
-libxcb-glx0-dev
-# (picom jonaburg)
-
-libpixman-1-dev
-# (picom jonaburg)
-
-libconfig-dev
-# (picom jonaburg)
-
-libgl1-mesa-dev
-# (picom jonaburg)
-
-libpcre2-dev
-# (picom jonaburg)
-
-libevdev-dev
-# (picom jonaburg)
-
-uthash-dev
-# (picom jonaburg)
-
-libev-dev
+# libx11-xcb-dev
+# libxext-dev
+# libxcb1-dev
+# libxcb-damage0-dev
+# libxcb-xfixes0-dev
+# libxcb-shape0-dev
+# libxcb-render-util0-dev
+# libxcb-render0-dev
+# libxcb-randr0-dev
+# libxcb-composite0-dev
+# libxcb-image0-dev
+# libxcb-present-dev
+# libxcb-xinerama0-dev
+# libxcb-glx0-dev
+# libpixman-1-dev
+# libconfig-dev
+# libgl1-mesa-dev
+# libpcre2-dev
+# libevdev-dev
+# uthash-dev
+# libev-dev
 # (picom jonaburg)
 
 libxss-dev
@@ -169,7 +130,7 @@ lua-nvim-dev
 
 tidy
 # HTML/XML syntax checker and reformatter
-# (neovim) 
+# (neovim)
 
 gtk2-engines-pixbuf
 # Gtk engine
@@ -371,6 +332,9 @@ cups
 
 sudo
 # Provide limited super user privileges to specific users
+
+picom
+# Compositor
 
 fontconfig
 # Generic font configuration libarary
