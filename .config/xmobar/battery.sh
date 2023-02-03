@@ -1,22 +1,33 @@
 #!/bin/bash
+
+# ensure only one instance of script is running
+if pidof -x $(basename $0) -o %PPID > /dev/null
+then
+    exit
+fi
+
 ac=" "
 
-if [ -d /proc/acpi/battery/BAT* ]; then
- state=$(upower -i $(upower -e | grep '/battery') | grep --color=never -E state)
- plugged=$(echo "${state}" | grep -wo "charging")
- charge=$(upower -i $(upower -e | grep '/battery') | grep --color=never -E percentage|xargs|cut -d' ' -f2|sed s/%//)
+if [ -d /sys/class/power_supply/BAT* ]; then
+charge=$(upower -i $(upower -e | grep '/battery') | grep -E percentage|xargs|cut -d' ' -f2|sed s/%//)
+status=$(cat /sys/class/power_supply/BAT*/status)
+#state=$(upower -i $(upower -e | grep '/battery') | grep  -E state)
+#status=$(echo "${state}" | grep -wo "charging")
+#CHARGE=$(cat /sys/class/power_supply/BAT*/capacity)
 else
     echo "<fc=#d3869b>$ac AC power</fc>"
 fi
 
-case $((charge/50)) in
-  0) icon=" " ;;
-  1) icon=" " ;;
-  *) icon=" " ;;
-esac
-
-if [[ ${plugged} == "charging" ]]; then
+if [ "$status" = "Charging" ]; then
     echo "<fc=#d3869b>$ac ${charge}%</fc>"
+elif [ $charge -le 75 ] && [ $charge -gt 50  ]; then
+    echo "<fc=#d3869b>"  " ${charge}%</fc>"
+elif [ $charge -le 50 ] && [ $charge -gt 25  ]; then
+    echo "<fc=#d3869b>"  " ${charge}%</fc>"
+elif [ $charge -le 25 ] && [ $charge -gt 10  ]; then
+    echo "<fc=#d3869b>"  " ${charge}%</fc>"
+elif [ $charge -le 10 ]; then
+    echo "<fc=#d3869b>"  " ${charge}%</fc>"
 else
-    echo "<fc=#d3869b>$icon ${charge}%</fc>"
+    echo "<fc=#d3869b> "  " ${charge}%</fc>"
 fi

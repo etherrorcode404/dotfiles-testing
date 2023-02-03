@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# ensure only one instance of script is running
+if pidof -x $(basename $0) -o %PPID > /dev/null
+then
+    exit
+fi
+
 #This script displays microphone status, requires xmobar.
 
 

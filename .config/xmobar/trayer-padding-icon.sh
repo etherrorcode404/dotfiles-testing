@@ -1,4 +1,11 @@
 #!/bin/sh
+
+# ensure only one instance of script is running
+if pidof -x $(basename $0) -o %PPID > /dev/null
+then
+    exit
+fi
+
 # Copied from https://github.com/jaor/xmobar/issues/239#issuecomment-233206552
 # Detects the width of running trayer-srg window (xprop name 'panel')
 # and creates an XPM icon of that width, 1px height, and transparent.

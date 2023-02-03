@@ -3,12 +3,12 @@ Config {
    font = "xft:FiraCode Nerd Font:size=10:antialias=true:autohinting=true:Regular"
    , bgColor =      "#282828"
    , fgColor =      "#e2cca9"
-   --, borderColor = "#282828"
-   , position = TopSize L 100 24
-   --, position = TopP 0 100,
+   --, borderColor =  "#282828"
+   , position       = TopSize L 100 24
+   --, position =     TopP 0 100,
    -- , additionalFonts = ["xft::size=10"]
    -- , alpha = 175
-   -- , border = BottomB
+   -- , border =       BottomB
 
    -- Layout
    , sepChar =  "%"   -- Delineator between plugin names and straight text
@@ -41,9 +41,8 @@ Config {
                -- Microphone Script
         , Run Com "bash" ["-c", "~/.config/xmobar/microphone.sh"] "microphone" 5
         , Run Com "bash" ["-c", "~/.config/xmobar/battery.sh"] "battery" 5
-               -- Date indicator
+               -- date indicator
         , Run Com "bash" ["-c", "~/.config/xmobar/date.sh"] "date" 60
-               -- Trayerpadding
         , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
         , Run UnsafeXMonadLog
         ]
