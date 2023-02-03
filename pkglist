@@ -294,6 +294,9 @@ seahorse
 gnome-disk-utility
 # Manage and configrue disk drives and media
 
+gnome-calculator
+# Desktop calculator
+
 htop
 # Interactive processes viewer
 
