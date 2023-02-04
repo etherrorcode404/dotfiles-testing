@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# ensure only one instance of script is running
-if pidof -x $(basename $0) -o %PPID > /dev/null
-then
-    exit
-fi
-
 bar=$(amixer sget Master | tail -n 1)
 status=$(echo "${bar}" | grep -wo "on")
 volume=$(echo "${bar}" | awk -F ' ' '{print $5}' | tr -d '[]%')
