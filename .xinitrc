@@ -9,5 +9,4 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
 fi
 
 exec xfce4-power-manager &
-exec ~/.config/xmonad/batteryNotify.sh &
 exec dbus-launch --autolaunch=$(cat /var/lib/dbus/machine-id) $HOME/.cache/xmonad/xmonad-x86_64-linux
