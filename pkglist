@@ -357,6 +357,9 @@ rofi
 feh
 # Image viewer
 
+xfce4-screenshooter
+# Screenshot utility
+
 scrot
 # Take Screenshots
 
