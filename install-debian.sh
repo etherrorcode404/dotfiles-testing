@@ -289,4 +289,3 @@ EndSection" >> 20-intel.conf
     sudo chmod +775 /etc/X11/xorg.conf.d/20-intel.conf
     echo "Intel is now free of screen tearing"
 fi
-fi
