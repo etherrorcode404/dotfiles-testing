@@ -154,6 +154,7 @@ sudo apt-get update && sudo apt-get install -qq -f -y github-desktop
 echo "## Neovim ##"
 sudo apt-get autoremove -qq -y neovim
 sudo apt-get autoremove -qq -y neovim-runtime
+sleep 2s
 wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
 sudo nala install ./nvim-linux64.deb
 
