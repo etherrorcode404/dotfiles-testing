@@ -120,7 +120,7 @@ stack upgrade
 stack init
 stack install
 sudo ln -s ~/.local/bin/xmonad /usr/bin
-sudo wget -O /usr/share/xsessions/xmonad.desktop "https://githubusercontent.com/etherrorcode404/main/xmonad.dekstop"
+sudo wget -O /usr/share/xsessions/xmonad.desktop "https://raw.githubusercontent.com/etherrorcode404/main/xmonad.dekstop"
 sudo chmod +x /usr/share/xsessions/xmonad.desktop
 sudo chmod 775 /usr/share/xsessions/xmonad.desktop
 cd $HOME
