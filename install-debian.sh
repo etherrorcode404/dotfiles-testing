@@ -140,6 +140,7 @@ mkdir -p ~/.local/share/applications
 sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/spotify.desktop"
 sudo chmod +x ~/.local/share/applications/spotify.desktop
 sudo chmod 775 ~/.local/share/applications/spotify.desktop
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
 
 echo "## Brave Browser ##"
 sleep 2s
