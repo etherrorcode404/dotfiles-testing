@@ -138,7 +138,10 @@ gtk2-engines-pixbuf
 ################################################################################
 ## Xorg and X11 ##
 ################################################################################
-xserver-xorg-core xinit
+xserver-xorg-core
+# Xorg X server - core server
+
+xinit
 # Startx
 
 x11-utils
