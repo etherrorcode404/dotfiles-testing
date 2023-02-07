@@ -51,7 +51,7 @@ sudo nala fetch
 echo installing the pre-requisites..
 sleep 2s
 egrep -v "^$|^[[:space:]]*#" $(pwd)/pkglist > pkginstall
-sudo nala install $(cat pkginstall)
+sudo apt-get install $(cat pkginstall)
 
 echo "##################################"
 echo "## Building and adding Programs ##"
@@ -154,13 +154,12 @@ sudo apt-get update && sudo apt-get install -qq -f -y github-desktop
 echo "## Neovim ##"
 sudo apt-get autoremove -qq -y neovim
 sudo apt-get autoremove -qq -y neovim-runtime
-sleep 2s
-wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
-sudo nala install ./nvim-linux64.deb
+wget -O nvim.deb "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb"
+sudo nala install ./nvim.deb
 
 echo "## Zoom ##"
-wget https://zoom.us/client/latest/zoom_amd64.deb
-sudo nala install ./zoom_amd64.deb
+wget -O zoom.deb "https://zoom.us/client/latest/zoom_amd64.deb"
+sudo nala install ./zoom.deb
 
 echo "## Discord ##"
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
