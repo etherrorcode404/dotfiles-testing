@@ -142,6 +142,7 @@ sudo chmod +x ~/.local/share/applications/spotify.desktop
 sudo chmod 775 ~/.local/share/applications/spotify.desktop
 
 echo "## Brave Browser ##"
+sleep 2s
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt-get update && sudo apt-get install -qq -f -y brave-browser
@@ -152,16 +153,19 @@ sudo sh -c 'echo "deb [arch=amd64] https://mirror.mwt.me/ghd/deb/ any main" > /e
 sudo apt-get update && sudo apt-get install -qq -f -y github-desktop
 
 echo "## Neovim ##"
+sleep 2s
 sudo apt-get autoremove -qq -y neovim
 sudo apt-get autoremove -qq -y neovim-runtime
 wget -O nvim.deb "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb"
 sudo nala install ./nvim.deb
 
 echo "## Zoom ##"
+sleep 2s
 wget -O zoom.deb "https://zoom.us/client/latest/zoom_amd64.deb"
 sudo nala install ./zoom.deb
 
 echo "## Discord ##"
+sleep 2s
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo nala install ./discord.deb
 
