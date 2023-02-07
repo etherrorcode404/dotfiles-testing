@@ -21,9 +21,12 @@ error() { \
 echo "#####################################################################"
 echo "## Updating and installing 'Script Dependencies' if not installed  ##"
 echo "#####################################################################"
-sudo cp -r $(pwd)/sources.list /etc/apt/
-sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
 sudo apt-get install -qq -f -y dialog grep wget
+sudo wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/sources.list"
+sudo chmod +x /etc/apt/sources.list
+sudo chmod 775 /etc/apt/sources.list
+
+sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
 
 echo "#####################################"
 echo "## Adding 'non-free' and 'contrib' ##"
