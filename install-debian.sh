@@ -185,7 +185,7 @@ sleep 2s
 
 echo "## Clean UP ##"
 sleep 2s
-rm -rf GithubDesktop-linux-3.0.3-linux1.deb zoom_amd64.deb discord.deb
+rm -rf *.deb
 rm -rf gruvbox-material-gtk spotify-adblock alacritty picom
 sudo apt-get autopurge
 sudo apt-get update && sudo apt-get dist-upgrade
