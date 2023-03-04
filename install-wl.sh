@@ -160,6 +160,7 @@ echo "## Hyprland ##"
 git clone --recursive https://github.com/hyprwm/Hyprland
 cd Hyprland
 sudo make install
+cd $HOME
 
 echo "## Waybar ##"
 git clone https://github.com/Alexays/Waybar
@@ -168,6 +169,27 @@ sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::strin
 meson --prefix=/usr --buildtype=plain --auto-features=enabled --wrap-mode=nodownload build
 meson configure -Dexperimental=true build
 sudo ninja -C build install
+cd $HOME
+
+echo "## Hyprpaper ##"
+git clone https://github.com/hyprwm/hyprpaper
+cd hyprpaper
+make all
+cd $HOME
+
+echo "## Hyprpicker ##"
+git clone https://github.com/hyprwm/hyprpicker
+cd hyprpicker
+make all
+cd $HOME
+
+echo "## xdg-desktop-portal-hyprland ##"
+https://github.com/hyprwm/xdg-desktop-portal-hyprland
+meson build --prefix=/usr
+ninja -C build
+cd hyprland-share-picker && make all && cd ..
+ninja -C build install
+sudo cp ./hyprland-share-picker/build/hyprland-share-picker /usr/bin
 
 echo "## Clean UP ##"
 sleep 2s
