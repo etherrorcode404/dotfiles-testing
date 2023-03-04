@@ -118,6 +118,12 @@ wayland-protocls
 wayland-utils
 # Wayland utilities
 
+qt6-base-dev
+# qt framework
+
+qt6-wayland
+# qt framework wayland support (fixes screen share)
+
 ################################################################################
 ## GPU ##
 ################################################################################
