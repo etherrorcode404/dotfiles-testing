@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=XMonad
-Comment=Lightweight tiling window manager
-Exec=$HOME/.local/bin/xmonad
-# Exec=$HOME/.cache/xmonad/xmonad-x86_64-linux
-Type=XSession
