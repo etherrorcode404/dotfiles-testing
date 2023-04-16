@@ -23,6 +23,7 @@ echo "## Updating and installing 'Script Dependencies' if not installed  ##"
 echo "#####################################################################"
 sudo apt-get install -qq -f -y dialog grep wget
 sudo wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/sources.list"
+sudo chmod +x /etc/apt/sources.list
 sudo chmod 775 /etc/apt/sources.list
 
 sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
@@ -36,11 +37,11 @@ sudo apt-add-repository contrib && sudo apt-add-repository non-free
 sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
 
 echo "########################"
-echo "## Adding 'nala' repo ##"
+echo "## Installing 'nala'  ##"
 echo "########################"
-echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
-wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
-echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+#echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+#wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+#echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 sudo apt-get update && sudo apt-get install -qq -f -y nala
 
 echo "######################"
@@ -50,7 +51,7 @@ sudo nala fetch
 echo installing the pre-requisites..
 sleep 2s
 egrep -v "^$|^[[:space:]]*#" $(pwd)/wlpkglist > wlpkginstall
-sudo apt-get install $(cat wlpkginstall)
+sudo apt-get install $(cat wlpkginstall) && sudo apt-get build-dep wlroots
 
 echo "##################################"
 echo "## Building and adding Programs ##"
@@ -70,7 +71,7 @@ echo "## Dunst ##"
 sleep 2s
 git clone https://github.com/dunst-project/dunst.git
 cd dunst
-sudo make WAYLAND=1 install
+sudo make WAYLAND=0 install
 
 echo "## Alacritty ##"
 sleep 2s
@@ -82,10 +83,11 @@ rustup update stable
 wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
 sudo mkdir -p /usr/local/share/applications/
 sudo mv Alacritty.desktop /usr/local/share/applications/
+sudo chmod +X /usr/local/share/applications/Alacritty.desktop
 sudo chmod 775 /usr/local/share/applications/Alacritty.desktop
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
-cargo build --release --no-default-features --features=wayland
+cargo build --release --no-default-features --features=x11
 sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
 sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
 sudo desktop-file-install extra/linux/Alacritty.desktop
@@ -98,6 +100,31 @@ cp extra/completions/alacritty.bash ~/.bash_completion/alacritty
 echo "source ~/.bash_completion/alacritty" >> ~/.bashrc
 mkdir -p $fish_complete_path[1]
 cp extra/completions/alacritty.fish $fish_complete_path[1]/alacritty.fish
+
+#echo "## Xmonad ##"
+#sleep 2s
+#cd ~/.config/xmonad
+#sudo apt-get autoremove -qq -y xmoand
+#git clone https://github.com/xmonad/xmonad
+#git clone https://github.com/xmonad/xmonad-contrib
+#stack upgrade
+#stack init
+#stack install
+#sudo ln -s ~/.local/bin/xmonad /usr/bin
+#sudo wget -O /usr/share/xsessions/xmonad.desktop "https://raw.githubusercontent.com/etherrorcode404/main/xmonad.dekstop"
+#sudo chmod +x /usr/share/xsessions/xmonad.desktop
+#sudo chmod 775 /usr/share/xsessions/xmonad.desktop
+#cd $HOME
+
+echo "## Hyprland ##"
+git clone --recursive https://gitlab.com/volian/Hyprland.git
+cd Hyprland
+meson build
+ninja -C build
+sudo ninja -C build install
+
+echo "## Waybar ##"
+sudo apt-get install waybar
 
 echo "## Spotify & adblock ##"
 sleep 2s
@@ -112,6 +139,7 @@ sudo make install
 cd $HOME
 mkdir -p ~/.local/share/applications
 sudo wget -O ~/.local/share/applications/spotify.desktop "https://raw.githubusercontent.com/etherrorcode404/dotfiles/main/spotify.desktop"
+sudo chmod +x ~/.local/share/applications/spotify.desktop
 sudo chmod 775 ~/.local/share/applications/spotify.desktop
 curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
 
@@ -144,8 +172,8 @@ wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=d
 sudo nala install ./discord.deb
 
 echo "## Shell ##"
-echo "Installing fish from backports.."
-sudo apt-get install -qq -f -y fish/bullseye-backports
+sudo apt-get install fish
+
 echo "symlink in /bin/sh:"
 readlink /bin/sh
 echo "symlink in /usr/bin/sh:"
@@ -155,41 +183,6 @@ fish -c "nvm install lts"
 # fish -c "npm i -g eslint_d"
 # fish -c "npm i -g @fsouza/prettierd"
 sleep 2s
-
-echo "## Hyprland ##"
-git clone --recursive https://github.com/hyprwm/Hyprland
-cd Hyprland
-sudo make install
-cd $HOME
-
-echo "## Waybar ##"
-git clone https://github.com/Alexays/Waybar
-cd Waybar
-sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-meson --prefix=/usr --buildtype=plain --auto-features=enabled --wrap-mode=nodownload build
-meson configure -Dexperimental=true build
-sudo ninja -C build install
-cd $HOME
-
-echo "## Hyprpaper ##"
-git clone https://github.com/hyprwm/hyprpaper
-cd hyprpaper
-make all
-cd $HOME
-
-echo "## Hyprpicker ##"
-git clone https://github.com/hyprwm/hyprpicker
-cd hyprpicker
-make all
-cd $HOME
-
-echo "## xdg-desktop-portal-hyprland ##"
-https://github.com/hyprwm/xdg-desktop-portal-hyprland
-meson build --prefix=/usr
-ninja -C build
-cd hyprland-share-picker && make all && cd ..
-ninja -C build install
-sudo cp ./hyprland-share-picker/build/hyprland-share-picker /usr/bin
 
 echo "## Clean UP ##"
 sleep 2s
