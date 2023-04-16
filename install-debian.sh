@@ -132,6 +132,36 @@ meson build
 ninja -C build
 sudo ninja -C build install
 
+echo "## Waybar ##"
+sudo apt install \
+  clang-tidy \
+  gobject-introspection \
+  libdbusmenu-gtk3-dev \
+  libevdev-dev \
+  libfmt-dev \
+  libgirepository1.0-dev \
+  libgtk-3-dev \
+  libgtkmm-3.0-dev \
+  libinput-dev \
+  libjsoncpp-dev \
+  libmpdclient-dev \
+  libnl-3-dev \
+  libnl-genl-3-dev \
+  libpulse-dev \
+  libsigc++-2.0-dev \
+  libspdlog-dev \
+  libwayland-dev \
+  scdoc \
+  upower \
+  libxkbregistry-dev
+git clone https://github.com/Alexays/Waybar
+cd Waybar
+sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+meson --prefix=/usr --buildtype=plain --auto-features=enabled --wrap-mode=nodownload build
+meson configure -Dexperimental=true build
+sudo ninja -C build install
+cd $HOME
+
 echo "## Spotify & adblock ##"
 sleep 2s
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo gpg --dearmor -o /usr/share/keyrings/spotify-archive-keyring.gpg
