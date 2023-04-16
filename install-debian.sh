@@ -37,11 +37,11 @@ sudo apt-add-repository contrib && sudo apt-add-repository non-free
 sudo apt-get update && sudo apt-get dist-upgrade -qq -f -y
 
 echo "########################"
-echo "## Adding 'nala' repo ##"
+echo "## Installing 'nala'  ##"
 echo "########################"
-echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
-wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
-echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+#echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+#wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+#echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 sudo apt-get update && sudo apt-get install -qq -f -y nala
 
 echo "######################"
