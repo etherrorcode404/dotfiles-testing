@@ -71,16 +71,7 @@ echo "## Dunst ##"
 sleep 2s
 git clone https://github.com/dunst-project/dunst.git
 cd dunst
-sudo make WAYLAND=0 install
-
-echo "## Picom ##"
-sleep 2s
-cd $HOME
-git clone https://github.com/jonaburg/picom
-cd picom
-meson setup --buildtype=release . build
-ninja -C build
-sudo ninja -C build install
+sudo make WAYLAND=1 install
 
 echo "## Alacritty ##"
 sleep 2s
@@ -96,7 +87,7 @@ sudo chmod +X /usr/local/share/applications/Alacritty.desktop
 sudo chmod 775 /usr/local/share/applications/Alacritty.desktop
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
-cargo build --release --no-default-features --features=x11
+cargo build --release --no-default-features --features=wayland
 sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
 sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
 sudo desktop-file-install extra/linux/Alacritty.desktop
@@ -196,6 +187,6 @@ sleep 2s
 echo "## Clean UP ##"
 sleep 2s
 rm -rf *.deb
-rm -rf gruvbox-material-gtk spotify-adblock alacritty picom
+rm -rf gruvbox-material-gtk spotify-adblock alacritty 
 sudo apt-get autopurge
 sudo apt-get update && sudo apt-get dist-upgrade
