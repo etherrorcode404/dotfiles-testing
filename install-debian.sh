@@ -50,8 +50,8 @@ echo "######################"
 sudo nala fetch
 echo installing the pre-requisites..
 sleep 2s
-egrep -v "^$|^[[:space:]]*#" $(pwd)/pkglist > pkginstall
-sudo apt-get install $(cat pkginstall) && sudo apt-get build-dep wlroots
+egrep -v "^$|^[[:space:]]*#" $(pwd)/wlpkglist > wlpkginstall
+sudo apt-get install $(cat wlpkginstall) && sudo apt-get build-dep wlroots
 
 echo "##################################"
 echo "## Building and adding Programs ##"
@@ -110,20 +110,27 @@ echo "source ~/.bash_completion/alacritty" >> ~/.bashrc
 mkdir -p $fish_complete_path[1]
 cp extra/completions/alacritty.fish $fish_complete_path[1]/alacritty.fish
 
-echo "## Xmonad ##"
-sleep 2s
-cd ~/.config/xmonad
-sudo apt-get autoremove -qq -y xmoand
-git clone https://github.com/xmonad/xmonad
-git clone https://github.com/xmonad/xmonad-contrib
-stack upgrade
-stack init
-stack install
-sudo ln -s ~/.local/bin/xmonad /usr/bin
-sudo wget -O /usr/share/xsessions/xmonad.desktop "https://raw.githubusercontent.com/etherrorcode404/main/xmonad.dekstop"
-sudo chmod +x /usr/share/xsessions/xmonad.desktop
-sudo chmod 775 /usr/share/xsessions/xmonad.desktop
-cd $HOME
+#echo "## Xmonad ##"
+#sleep 2s
+#cd ~/.config/xmonad
+#sudo apt-get autoremove -qq -y xmoand
+#git clone https://github.com/xmonad/xmonad
+#git clone https://github.com/xmonad/xmonad-contrib
+#stack upgrade
+#stack init
+#stack install
+#sudo ln -s ~/.local/bin/xmonad /usr/bin
+#sudo wget -O /usr/share/xsessions/xmonad.desktop "https://raw.githubusercontent.com/etherrorcode404/main/xmonad.dekstop"
+#sudo chmod +x /usr/share/xsessions/xmonad.desktop
+#sudo chmod 775 /usr/share/xsessions/xmonad.desktop
+#cd $HOME
+
+echo "## Hyprland ##"
+git clone --recursive https://gitlab.com/volian/Hyprland.git
+cd Hyprland
+meson build
+ninja -C build
+sudo ninja -C build install
 
 echo "## Spotify & adblock ##"
 sleep 2s
