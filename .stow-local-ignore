@@ -2,3 +2,4 @@
 .DS_Store
 README.md
 install_packages.sh
+installed_packages*
