@@ -15,6 +15,7 @@ apt						install
 apt-listchanges					install
 apt-utils					install
 aspell						install
+aspell-en					install
 at-spi2-common					install
 at-spi2-core					install
 autoconf					install
@@ -73,6 +74,8 @@ cmake						install
 cmake-data					install
 cmake-extras					install
 code						install
+colord						install
+colord-data					install
 console-setup					install
 console-setup-linux				install
 coreutils					install
@@ -1827,8 +1830,6 @@ lua-socket:amd64				install
 lua5.1						install
 luarocks					install
 luit						install
-lxpolkit					install
-lxsession-data					install
 lynx						install
 lynx-common					install
 m4						install
@@ -2301,6 +2302,7 @@ po-debconf					install
 pocketsphinx-en-us				install
 pocl-opencl-icd:amd64				install
 policykit-1					install
+polkit-kde-agent-1				install
 polkitd						install
 poppler-data					install
 poppler-utils					install
