@@ -1,11 +1,8 @@
-# GitHub Actions workflow to automatically update the Neovim subtree
-# in the dotfiles repo when a change is detected in the nvim repo.
-
 name: Update Nvim Subtree
 
 on:
   repository_dispatch: 
-    types: [update-subtree]  # Ensure this matches what you're sending
+    types: [update-subtree]  # Ensure this matches what you're sending from Neovim repo
   
   workflow_dispatch:  # Manual trigger option
 
@@ -43,4 +40,4 @@ jobs:
           # Commit and push the updated subtree from nvim back to the dotfiles repo
           git add .config/nvim
           git commit -m "${{ env.latest_commit_msg }}" || echo "No changes to commit"
-          git push origin hyprland  # Push to branch
+          git push origin hyprland  # Replace "hyprland" with your working branch name if needed
