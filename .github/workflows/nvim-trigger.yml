@@ -1,0 +1,19 @@
+
+name: Trigger Repository Update
+
+on:
+  push:
+    branches:
+      - hyprland  
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: etherbiswas/nvim
+          event-type: push-subtree
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
