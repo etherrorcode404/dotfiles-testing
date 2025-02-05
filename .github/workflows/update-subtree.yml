@@ -1,15 +1,13 @@
-# dotfiles Workflow (Update Nvim Subtree) - Best Version
-
 name: Update Nvim Subtree
 
 on:
   repository_dispatch:
-    types: [update-subtree]
+    types: ["update-subtree"]
   workflow_dispatch:
 
 jobs:
   update-subtree:
-    runs-on: ubuntu-latest
+    runs-on: debian-11
     permissions:
       contents: write # Required to push changes
 
@@ -19,7 +17,10 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           ref: hyprland
-          fetch-depth: 0
+          fetch-depth: 1
+
+      - name: Install dependencies (if needed)
+        run: sudo apt update && sudo apt install -y git
 
       - name: Set Git author identity
         run: |
@@ -37,8 +38,13 @@ jobs:
           latest_commit_msg=$(git log -1 --pretty=%B)
           echo "latest_commit_msg=$latest_commit_msg" >> $GITHUB_ENV
 
+      - name: Check git status and remote setup
+        run: |
+          git status
+          git remote -v
+
       - name: Commit and push updated Neovim config to dotfiles
         run: |
           git add .config/nvim
           git commit -m "${{ env.latest_commit_msg }}" || echo "No changes to commit"
-          git push origin hyprland
+          git push origin hyprland || { echo "Push failed"; exit 1; }
