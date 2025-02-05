@@ -4,38 +4,42 @@
 name: Update Nvim Submodule
 
 on:
-  # Trigger this workflow when a repository dispatch event is received
   repository_dispatch: 
-    types: [update-submodules] # Ensure this matches what you're sending
+    types: [update-submodules]  # Ensure this matches what you're sending
 
-  # Allow manual triggering from GitHub Actions tab
   workflow_dispatch:
 
 jobs:
   update-submodule:
-    # Run on the latest Ubuntu runner (officially supported by GitHub)
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the dotfiles repository, including submodules
       - name: Checkout dotfiles repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Uses a secret token for authentication
-          submodules: true # Ensure submodules are also pulled
-          fetch-depth: 0 # Fetch full history for proper submodule updates
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          submodules: true  # Ensure submodules are also pulled
+          fetch-depth: 0  # Fetch full history for proper submodule updates
 
-      # Step 2: Remove old nvim directory (if exists)
-      - name: Remove old nvim directory (if exists)
-        run: rm -rf .config/nvim
+      - name: Set Git author identity
+        run: |
+          git config --global user.name "Your Name"
+          git config --global user.email "you@example.com"
 
-      # Step 3: Clone latest nvim repo
-      - name: Clone latest nvim repo
-        run: git clone --depth=1 https://github.com/etherbiswas/nvim.git .config/nvim
+      - name: Add Neovim submodule
+        run: |
+          git submodule add https://github.com/etherbiswas/nvim.git .config/nvim || echo "Submodule already added"
+          git submodule update --init --recursive
 
-      # Step 4: Commit and push
+      - name: Get latest Neovim commit message
+        id: commit_msg
+        run: |
+          cd .config/nvim
+          latest_commit_msg=$(git log -1 --pretty=%B)
+          echo "latest_commit_msg=$latest_commit_msg" >> $GITHUB_ENV
+
       - name: Commit and push updated nvim config
         run: |
           git add .config/nvim
-          git commit -m "Auto-sync latest Neovim config"
+          git commit -m "${{ env.latest_commit_msg }}" || echo "No changes to commit"
           git push origin hyprland  # Push to the Hyprland branch
