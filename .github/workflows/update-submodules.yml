@@ -1,0 +1,33 @@
+# GitHub Actions workflow to automatically update the Neovim submodule 
+# in the dotfiles repo when a change is detected in the nvim repo.
+
+name: Update Nvim Submodule
+
+on:
+  # Trigger this workflow when a repository dispatch event is received
+  repository_dispatch:
+
+  # Allow manual triggering from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  update-submodule:
+    # Run on the latest Ubuntu runner (officially supported by GitHub)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the dotfiles repository, including submodules
+      - name: Checkout dotfiles repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Uses a secret token for authentication
+          submodules: true  # Ensure submodules are also pulled
+          fetch-depth: 0  # Fetch full history for proper submodule updates
+
+      # Step 2: Update the Neovim submodule to the latest commit
+      - name: Update submodule
+        run: |
+          git submodule update --remote --merge
+          git add .config/nvim
+          git commit -m "Auto-update Neovim submodule to latest commit" || echo "No changes to commit"
+          git push origin hyprland  # Push to the Hyprland branch
