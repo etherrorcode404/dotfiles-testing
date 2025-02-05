@@ -1,9 +1,8 @@
 name: Update Nvim Subtree
 
 on:
-  repository_dispatch: 
-    types: [update-subtree]  # Ensure this matches what you're sending from Neovim repo
-  
+  repository_dispatch:
+    types: [update-subtree]  # This must match the event_type you're sending
   workflow_dispatch:  # Manual trigger option
 
 jobs:
