@@ -3,7 +3,7 @@ name: Push Dotfiles Neovim Changes to Nvim Repo
 on:
   push:
     branches:
-      - hyprland # Change to match your `dotfiles` branch
+      - hyprland  # Change to match your `dotfiles` branch
 
 jobs:
   push-to-nvim:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout dotfiles repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # 🔥 This is the fix!
           fetch-depth: 0
 
       - name: Set up Git
@@ -35,8 +35,10 @@ jobs:
 
       - name: Push changes to Neovim repo
         if: env.push_needed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # 🔥 Fixing missing token
         run: |
           cd .config/nvim
           git add .
           git commit -m "Auto-sync: Changes from dotfiles repo"
-          git push origin lazy.nvim  # Change 'main' to your actual `nvim` repo branch
+          git push https://etherbiswas:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/etherbiswas/nvim.git main  # 🔥 Using token for authentication
