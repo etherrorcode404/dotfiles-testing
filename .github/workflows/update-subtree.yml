@@ -1,22 +1,25 @@
+# dotfiles Workflow (Update Nvim Subtree) - Best Version
+
 name: Update Nvim Subtree
 
 on:
-  # Listen for the repository_dispatch event and the specific event type "update-subtree"
   repository_dispatch:
-    types: [update-subtree]  # This must match the event_type you're sending
-  workflow_dispatch:  # Keep this for manual triggering
+    types: [update-subtree]
+  workflow_dispatch:
 
 jobs:
   update-subtree:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to push changes
 
     steps:
       - name: Checkout dotfiles repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          ref: hyprland  # Add this line
-          fetch-depth: 0  # Fetch full history for proper subtree updates
+          ref: hyprland
+          fetch-depth: 0
 
       - name: Set Git author identity
         run: |
@@ -25,20 +28,17 @@ jobs:
 
       - name: Pull latest nvim updates into dotfiles repo
         run: |
-          # Pull the latest changes from the Neovim repo into your dotfiles repo's subtree
           git subtree pull --prefix=.config/nvim https://github.com/etherbiswas/nvim.git lazy.nvim --squash || echo "No updates to pull"
 
       - name: Get latest nvim commit message
         id: commit_msg
         run: |
-          # Get the latest commit message from nvim repo's subtree directory
           cd .config/nvim
           latest_commit_msg=$(git log -1 --pretty=%B)
           echo "latest_commit_msg=$latest_commit_msg" >> $GITHUB_ENV
 
       - name: Commit and push updated Neovim config to dotfiles
         run: |
-          # Commit and push the updated subtree from nvim back to the dotfiles repo
           git add .config/nvim
           git commit -m "${{ env.latest_commit_msg }}" || echo "No changes to commit"
-          git push origin hyprland  # Replace "hyprland" with your working branch name if needed
+          git push origin hyprland
