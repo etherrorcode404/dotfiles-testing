@@ -4,6 +4,7 @@ on:
   # Listen for the repository_dispatch event and the specific event type "update-subtree"
   repository_dispatch:
     types: [update-subtree]  # This must match the event_type you're sending
+  workflow_dispatch:  # Keep this for manual triggering
 
 jobs:
   update-subtree:
