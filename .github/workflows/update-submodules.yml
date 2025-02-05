@@ -5,7 +5,8 @@ name: Update Nvim Submodule
 
 on:
   # Trigger this workflow when a repository dispatch event is received
-  repository_dispatch:
+  repository_dispatch: 
+    types: [update-submodules] # Ensure this matches what you're sending
 
   # Allow manual triggering from GitHub Actions tab
   workflow_dispatch:
