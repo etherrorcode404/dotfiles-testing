@@ -1,50 +1,31 @@
-name: Update Nvim Subtree
+
+name: Update Repository
 
 on:
   repository_dispatch:
-    types: ["update-subtree"]
+    types: [update-subtree]
   workflow_dispatch:
 
 jobs:
-  update-subtree:
-    runs-on: debian-11
+  update:
+    runs-on: ubuntu-latest
     permissions:
-      contents: write # Required to push changes
-
+      contents: write
     steps:
-      - name: Checkout dotfiles repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          ref: hyprland
-          fetch-depth: 1
+          fetch-depth: 0
 
-      - name: Install dependencies (if needed)
-        run: sudo apt update && sudo apt install -y git
-
-      - name: Set Git author identity
+      - name: Configure Git
         run: |
-          git config --global user.name "Ether Biswas"
-          git config --global user.email "etherrorcode404@gmail.com"
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Pull latest nvim updates into dotfiles repo
+      - name: Update Repository
         run: |
-          git subtree pull --prefix=.config/nvim https://github.com/etherbiswas/nvim.git lazy.nvim --squash || echo "No updates to pull"
+          git subtree pull --prefix=.config/nvim https://github.com/etherbiswas/nvim.git hyprland --squash
 
-      - name: Get latest nvim commit message
-        id: commit_msg
+      - name: Push changes
         run: |
-          cd .config/nvim
-          latest_commit_msg=$(git log -1 --pretty=%B)
-          echo "latest_commit_msg=$latest_commit_msg" >> $GITHUB_ENV
-
-      - name: Check git status and remote setup
-        run: |
-          git status
-          git remote -v
-
-      - name: Commit and push updated Neovim config to dotfiles
-        run: |
-          git add .config/nvim
-          git commit -m "${{ env.latest_commit_msg }}" || echo "No changes to commit"
-          git push origin hyprland || { echo "Push failed"; exit 1; }
+          git push
