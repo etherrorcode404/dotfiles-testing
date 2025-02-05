@@ -3,7 +3,7 @@ name: Update Nvim Subtree
 on:
   # Listen for the repository_dispatch event and the specific event type "update-subtree"
   repository_dispatch:
-    types: [update-subtree]  # This should match the event_type you're sending from the Neovim repo
+    types: [update-subtree]  # This must match the event_type you're sending
 
 jobs:
   update-subtree:
