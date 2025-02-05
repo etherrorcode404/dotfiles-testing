@@ -4,12 +4,6 @@ on:
   # Listen for the repository_dispatch event and the specific event type "update-subtree"
   repository_dispatch:
     types: [update-subtree]  # This should match the event_type you're sending from the Neovim repo
-  workflow_dispatch:  # Keep this for manual triggering
-    # You can remove this if you don’t need manual triggering, or keep it for manual runs
-    inputs:
-      trigger: 
-        description: 'Manual Trigger'
-        required: false
 
 jobs:
   update-subtree:
