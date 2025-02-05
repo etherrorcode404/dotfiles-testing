@@ -1,4 +1,4 @@
-# GitHub Actions workflow to automatically update the Neovim submodule 
+# GitHub Actions workflow to automatically update the Neovim submodule
 # in the dotfiles repo when a change is detected in the nvim repo.
 
 name: Update Nvim Submodule
@@ -20,14 +20,21 @@ jobs:
       - name: Checkout dotfiles repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Uses a secret token for authentication
-          submodules: true  # Ensure submodules are also pulled
-          fetch-depth: 0  # Fetch full history for proper submodule updates
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Uses a secret token for authentication
+          submodules: true # Ensure submodules are also pulled
+          fetch-depth: 0 # Fetch full history for proper submodule updates
 
-      # Step 2: Update the Neovim submodule to the latest commit
-      - name: Update submodule
+      # Step 2: Remove old nvim directory (if exists)
+      - name: Remove old nvim directory (if exists)
+        run: rm -rf .config/nvim
+
+      # Step 3: Clone latest nvim repo
+      - name: Clone latest nvim repo
+        run: git clone --depth=1 https://github.com/etherbiswas/nvim.git .config/nvim
+
+      # Step 4: Commit and push
+      - name: Commit and push updated nvim config
         run: |
-          git submodule update --remote --merge
           git add .config/nvim
-          git commit -m "Auto-update Neovim submodule to latest commit" || echo "No changes to commit"
+          git commit -m "Auto-sync latest Neovim config"
           git push origin hyprland  # Push to the Hyprland branch
