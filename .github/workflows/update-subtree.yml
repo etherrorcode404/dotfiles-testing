@@ -24,7 +24,7 @@ jobs:
 
       - name: Update Repository
         run: |
-          git subtree pull --prefix=.config/nvim https://github.com/etherbiswas/nvim.git hyprland --squash
+          git subtree pull --prefix=.config/nvim https://github.com/etherbiswas/nvim.git lazy.nvim --squash
 
       - name: Push changes
         run: |
