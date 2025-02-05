@@ -1,0 +1,46 @@
+# GitHub Actions workflow to automatically update the Neovim subtree
+# in the dotfiles repo when a change is detected in the nvim repo.
+
+name: Update Nvim Subtree
+
+on:
+  repository_dispatch: 
+    types: [update-subtree]  # Ensure this matches what you're sending
+  
+  workflow_dispatch:  # Manual trigger option
+
+jobs:
+  update-subtree:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dotfiles repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0  # Fetch full history for proper subtree updates
+
+      - name: Set Git author identity
+        run: |
+          git config --global user.name "Your Name"
+          git config --global user.email "you@example.com"
+
+      - name: Pull latest nvim updates into dotfiles repo
+        run: |
+          # Pull the latest changes from the Neovim repo into your dotfiles repo's subtree
+          git subtree pull --prefix=.config/nvim https://github.com/etherbiswas/nvim.git lazy.nvim --squash || echo "No updates to pull"
+
+      - name: Get latest nvim commit message
+        id: commit_msg
+        run: |
+          # Get the latest commit message from nvim repo's subtree directory
+          cd .config/nvim
+          latest_commit_msg=$(git log -1 --pretty=%B)
+          echo "latest_commit_msg=$latest_commit_msg" >> $GITHUB_ENV
+
+      - name: Commit and push updated Neovim config to dotfiles
+        run: |
+          # Commit and push the updated subtree from nvim back to the dotfiles repo
+          git add .config/nvim
+          git commit -m "${{ env.latest_commit_msg }}" || echo "No changes to commit"
+          git push origin hyprland  # Push to branch
